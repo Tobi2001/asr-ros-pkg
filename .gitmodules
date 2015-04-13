@@ -1,0 +1,99 @@
+[submodule "pbd_msgs"]
+	path = pbd_msgs
+	url = gitolite@i61p109.ira.uka.de:pbd_msgs
+[submodule "control/directed_perception_ptu/ptu_driver"]
+	path = control/directed_perception_ptu/ptu_driver
+	url = gitolite@i61p109.ira.uka.de:ptu_driver
+[submodule "control/exploration/smach"]
+	path = control/exploration/smach
+	url = gitolite@i61p109.ira.uka.de:smach
+[submodule "control/ptu_controller"]
+	path = control/ptu_controller
+	url = gitolite@i61p109.ira.uka.de:ptu_controller
+[submodule "control/ptu_tracking"]
+	path = control/ptu_tracking
+	url = gitolite@i61p109.ira.uka.de:ptu_tracking
+[submodule "mild/gazebo_models"]
+	path = mild/gazebo_models
+	url = gitolite@i61p109.ira.uka.de:gazebo_models
+[submodule "mild/Plattform_Rechner/mild_base_can"]
+	path = mild/Plattform_Rechner/mild_base_can
+	url = gitolite@i61p109.ira.uka.de:mild_base_can
+[submodule "mild/Plattform_Rechner/mild_base_launch_files"]
+	path = mild/Plattform_Rechner/mild_base_launch_files
+	url = gitolite@i61p109.ira.uka.de:mild_base_launch_files
+[submodule "mild/Plattform_Rechner/mild_base_sick"]
+	path = mild/Plattform_Rechner/mild_base_sick
+	url = gitolite@i61p109.ira.uka.de:mild_base_sick
+[submodule "mild/TOP_Rechner/mild_goal"]
+	path = mild/TOP_Rechner/mild_goal
+	url = gitolite@i61p109.ira.uka.de:mild_goal
+[submodule "mild/TOP_Rechner/mild_fake_odom"]
+	path = mild/TOP_Rechner/mild_fake_odom
+	url = gitolite@i61p109.ira.uka.de:mild_fake_odom
+[submodule "mild/TOP_Rechner/mild_navigation"]
+	path = mild/TOP_Rechner/mild_navigation
+	url = gitolite@i61p109.ira.uka.de:mild_navigation
+[submodule "pbd_dome/kinematic_chain"]
+	path = pbd_dome/kinematic_chain
+	url = gitolite@i61p109.ira.uka.de:kinematic_chain
+[submodule "pbd_dome/visualization_server"]
+	path = pbd_dome/visualization_server
+	url = gitolite@i61p109.ira.uka.de:visualization_server
+[submodule "perception/glove/glove_lib"]
+	path = perception/glove/glove_lib
+	url = gitolite@i61p109.ira.uka.de:glove_lib
+[submodule "perception/magneto/flock_of_birds"]
+	path = perception/magneto/flock_of_birds
+	url = gitolite@i61p109.ira.uka.de:flock_of_birds
+[submodule "perception/mechanical/kern_weighing_scale_reader"]
+	path = perception/mechanical/kern_weighing_scale_reader
+	url = gitolite@i61p109.ira.uka.de:kern_weighing_scale_reader
+[submodule "perception/scene_understanding/active_scene_recognition_ism"]
+	path = perception/scene_understanding/active_scene_recognition_ism
+	url = gitolite@i61p109.ira.uka.de:active_scene_recognition_ism
+[submodule "perception/scene_understanding/ism"]
+	path = perception/scene_understanding/ism
+	url = gitolite@i61p109.ira.uka.de:ism
+[submodule "perception/scene_understanding/probt"]
+	path = perception/scene_understanding/probt
+	url = gitolite@i61p109.ira.uka.de:probt
+[submodule "perception/scene_understanding/scene_graph_generator"]
+	path = perception/scene_understanding/scene_graph_generator
+	url = gitolite@i61p109.ira.uka.de:scene_graph_generator
+[submodule "perception/scene_understanding/scene_recognition_rviz_plugin"]
+	path = perception/scene_understanding/scene_recognition_rviz_plugin
+	url = gitolite@i61p109.ira.uka.de:scene_recognition_rviz_plugin
+[submodule "perception/visual/object_localization/marker_based/armarker_recognition"]
+	path = perception/visual/object_localization/marker_based/armarker_recognition
+	url = gitolite@i61p109.ira.uka.de:armarker_recognition
+[submodule "perception/visual/object_localization/object_database"]
+	path = perception/visual/object_localization/object_database
+	url = gitolite@i61p109.ira.uka.de:object_database
+[submodule "perception/visual/object_localization/rgbd_based/kitom_feature_based_recognition"]
+	path = perception/visual/object_localization/rgbd_based/kitom_feature_based_recognition
+	url = gitolite@i61p109.ira.uka.de:kitom_feature_based_recognition
+[submodule "perception/visual/object_localization/stereo_based/recognition_for_grasping"]
+	path = perception/visual/object_localization/stereo_based/recognition_for_grasping
+	url = gitolite@i61p109.ira.uka.de:recognition_for_grasping
+[submodule "perception/visual/resources_for_vision"]
+	path = perception/visual/resources_for_vision
+	url = gitolite@i61p109.ira.uka.de:resources_for_vision
+[submodule "perception/visual/vision_halcon/halcon_bridge"]
+	path = perception/visual/vision_halcon/halcon_bridge
+	url = gitolite@i61p109.ira.uka.de:halcon_bridge
+[submodule "perception/visual/vision_ivt/ivt"]
+	path = perception/visual/vision_ivt/ivt
+	url = gitolite@i61p109.ira.uka.de:ivt
+[submodule "perception/visual/vision_ivt/ivt_bridge"]
+	path = perception/visual/vision_ivt/ivt_bridge
+	url = gitolite@i61p109.ira.uka.de:ivt_bridge
+[submodule "utility/kalman_filter"]
+	path = utility/kalman_filter
+	url = gitolite@i61p109.ira.uka.de:kalman_filter
+[submodule "utility/xsd2cpp"]
+	path = utility/xsd2cpp
+	url = gitolite@i61p109.ira.uka.de:xsd2cpp
+[submodule "utility/ros_uri"]
+	path = utility/ros_uri
+	url = gitolite@i61p109.ira.uka.de:ros_uri
