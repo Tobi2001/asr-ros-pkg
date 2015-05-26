@@ -103,3 +103,6 @@
 [submodule "perception/scene_understanding/resources_for_psm"]
 	path = perception/scene_understanding/resources_for_psm
 	url = gitolite@i61p109.ira.uka.de:resources_for_psm
+[submodule "perception/scene_understanding/ism_visualizations"]
+	path = perception/scene_understanding/ism_visualizations
+	url = gitolite@i61p109.ira.uka.de:ism_visualizations
