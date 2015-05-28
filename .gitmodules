@@ -106,3 +106,6 @@
 [submodule "perception/scene_understanding/ism_visualizations"]
 	path = perception/scene_understanding/ism_visualizations
 	url = gitolite@i61p109.ira.uka.de:ism_visualizations
+[submodule "perception/visual/object_localization/stereo_based/next_best_view"]
+	path = perception/visual/object_localization/stereo_based/next_best_view
+	url = gitolite@i61p109.ira.uka.de:next_best_view
