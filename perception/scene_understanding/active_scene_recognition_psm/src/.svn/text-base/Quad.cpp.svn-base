@@ -1,0 +1,181 @@
+#include "Quad.h"
+#include <iostream>
+
+namespace ASR {
+
+  Quad::Quad(std::set<std::pair<std::string, std::string> > objects){
+
+    for(std::pair<std::string, std::string> object : objects) {
+    
+      if(mObjectExploredFlag.find(object.first) != mObjectExploredFlag.end()) {
+    
+	if(mObjectExploredFlag.at(object.first).find(object.second) == mObjectExploredFlag.at(object.first).end()) {
+
+	  mObjectExploredFlag.at(object.first).insert(std::make_pair(object.second, false));
+	  mObjectPresenceCounter.at(object.first).insert(std::make_pair(object.second, 0));
+
+	}
+      
+      }
+
+      else {
+
+	std::map<std::string, bool> idFlagMap;
+	std::map<std::string, int> idCountMap;
+
+	idFlagMap.insert(std::make_pair(object.second, false));
+	idCountMap.insert(std::make_pair(object.second, 0));
+
+	mObjectExploredFlag.insert(std::make_pair(object.first, idFlagMap));
+	mObjectPresenceCounter.insert(std::make_pair(object.first, idCountMap));
+
+      }
+    }
+ 
+  }
+
+  void Quad::markObjectAsExplored(std::string objectType, std::string objectIdentifier) {
+
+    mObjectExploredFlag.at(objectType).at(objectIdentifier) = true;
+
+  }
+
+  bool Quad::isObjectExplored(std::string objectType, std::string objectIdentifier) {
+    
+    return mObjectExploredFlag.at(objectType).at(objectIdentifier);
+
+  }
+
+  void Quad::incrementObjectPresenceCounter(std::string objectType, std::string objectIdentifier) {
+
+    addObjectPresenceCounts(1, objectType, objectIdentifier);
+    //std::cout << "inc: " << objectType << " " << objectIdentifier << mObjectPresenceCounter.at(objectType).at(objectIdentifier) << std::endl;
+
+  }
+
+  void Quad::addObjectPresenceCounts(int counts, std::string objectType, std::string objectIdentifier) {
+
+    mObjectPresenceCounter.at(objectType).at(objectIdentifier) += counts;
+
+  }
+
+  int Quad::getObjectPresenceCounter(std::string objectType, std::string objectIdentifier) {
+
+    return mObjectPresenceCounter.at(objectType).at(objectIdentifier);
+
+  }
+
+  int Quad::getObjectPresenceCounters() {
+
+    int c = 0;
+    
+    for(auto& typeAndIDMapPair : mObjectPresenceCounter)
+      for(auto& idAndCounterPair : typeAndIDMapPair.second)
+	c += idAndCounterPair.second;
+
+    return c;
+
+  }
+
+  std::set<std::pair<std::string, std::string> > Quad::getPresumablyPresentObjects() {
+
+    std::set<std::pair<std::string, std::string> > result;
+
+    for(auto& typeAndIDMapPair : mObjectPresenceCounter)
+      for(auto& idAndCounterPair : typeAndIDMapPair.second)
+	if (idAndCounterPair.second > 0)
+	  result.insert(std::make_pair(typeAndIDMapPair.first, idAndCounterPair.first));
+
+    return result;
+
+  }
+
+  std::set<std::pair<std::string, std::string> > Quad::getUnexploredObjects() {
+
+    std::set<std::pair<std::string, std::string> > result;
+
+    for(auto& typeAndIDMapPair : mObjectExploredFlag)
+      for(auto& idAndFlagPair : typeAndIDMapPair.second)
+	if(!idAndFlagPair.second)
+	  result.insert(std::make_pair(typeAndIDMapPair.first, idAndFlagPair.first));
+
+    return result;
+
+  }
+
+  void Quad::clearObjectPresenceCounters() {
+
+    for(auto& typeAndIDMapPair : mObjectPresenceCounter)
+      for(auto& idAndCounterPair : typeAndIDMapPair.second)
+	idAndCounterPair.second = 0;
+
+  }
+
+  void Quad::clearSamples() {
+
+    samples2D.clear();
+    samples3D.clear();
+
+  }
+
+  void Quad::clearObjectPresenceCounters(std::string objectType, std::string objectIdentifier) {
+
+    mObjectPresenceCounter.at(objectType).at(objectIdentifier) = 0;
+
+  }
+
+  void Quad::clearSamples(std::string objectType, std::string objectIdentifier) {
+
+    samples2D.find(objectType)->second.erase(objectIdentifier);
+    samples3D.find(objectType)->second.erase(objectIdentifier);
+        
+  }
+
+  void Quad::addSample(std::string objectType, std::string objectIdentifier, Eigen::Vector2f d2, Eigen::Vector3f d3, Eigen::Vector3f r3) {
+
+    std::pair<Eigen::Vector3f, Eigen::Vector3f> relativePositionD3(d3,r3);
+
+    //This is dangerous as samples2D and samples3D are both public.
+    if(samples2D.find(objectType) != samples2D.end()) {
+    
+      if(samples2D.at(objectType).find(objectIdentifier) != samples2D.at(objectType).end()){
+	
+	samples2D.at(objectType).at(objectIdentifier).push_back(d2);
+	samples3D.at(objectType).at(objectIdentifier).push_back(relativePositionD3);
+
+      }
+      else {
+	
+	std::vector<Eigen::Vector2f> newVec2f;
+	newVec2f.push_back(d2);
+	samples2D.at(objectType).insert(std::make_pair(objectIdentifier, newVec2f));
+
+	std::vector<std::pair<Eigen::Vector3f, Eigen::Vector3f> > newVec3f;
+	newVec3f.push_back(relativePositionD3);
+	samples3D.at(objectType).insert(std::make_pair(objectIdentifier, newVec3f));
+
+      }
+
+    }
+
+    else {
+
+      std::vector<Eigen::Vector2f> newVec2f;
+      newVec2f.push_back(d2);
+      std::map<std::string, std::vector<Eigen::Vector2f> > idD2Map;
+      
+      std::vector<std::pair<Eigen::Vector3f, Eigen::Vector3f> > newVec3f;
+      newVec3f.push_back(relativePositionD3);
+      std::map<std::string, std::vector<std::pair<Eigen::Vector3f, Eigen::Vector3f> > > idD3Map;
+
+      idD2Map.insert(std::make_pair(objectIdentifier, newVec2f));
+      idD3Map.insert(std::make_pair(objectIdentifier, newVec3f));
+
+      samples2D.insert(std::make_pair(objectType, idD2Map));
+      samples3D.insert(std::make_pair(objectType, idD3Map));
+
+    }
+
+  }
+
+}

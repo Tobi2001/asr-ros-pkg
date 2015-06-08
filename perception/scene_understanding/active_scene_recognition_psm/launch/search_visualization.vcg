@@ -1,0 +1,120 @@
+Background\ ColorB=1
+Background\ ColorG=1
+Background\ ColorR=1
+Camera\ Config=0.384797 1.28396 2.22522 -0.107569 -1.36412 -0.426341
+Camera\ Type=rviz::OrbitViewController
+Fixed\ Frame=/PTU_rviz
+Image.Enabled=1
+Image.Image\ Topic=/stereo/left/image_color
+Image.Queue\ Size=2
+Image.Transport\ Hint=raw
+Marker.Enabled=1
+Marker.Marker\ Topic=/active_scene_recognition_ism/tessellated_sphere_marker
+Marker.Queue\ Size=100
+Marker.tessellated_sphere=1
+Marker2.Enabled=1
+Marker2.Marker\ Topic=/active_scene_recognition_ism/dome_meshes
+Marker2.Queue\ Size=100
+Marker2.dome_meshes=1
+Marker3.Enabled=1
+Marker3.Marker\ Topic=/active_scene_recognition_ism/ptu_fov_marker
+Marker3.Queue\ Size=100
+Marker3.ptu_field_of_view=1
+Marker4.Enabled=1
+Marker4.Marker\ Topic=/active_scene_recognition_ism/samples2d_markers
+Marker4.Queue\ Size=100
+Marker5.Enabled=1
+Marker5.Marker\ Topic=/active_scene_recognition_ism/samples3d_markers
+Marker5.Queue\ Size=100
+Marker6.Enabled=1
+Marker6.Marker\ Topic=/stereo/visualization_marker
+Marker6.Queue\ Size=100
+Marker6.texture\ based\ recognition=1
+Marker7.Enabled=1
+Marker7.Marker\ Topic=/active_scene_recognition_ism/arrow_marker
+Marker7.Queue\ Size=100
+Marker8.0scene_recognition_sceneA_lines=1
+Marker8.0scene_recognition_sceneA_ref=1
+Marker8.0scene_recognition_sceneA_sub0_lines=1
+Marker8.0scene_recognition_sceneA_sub0_parent_arrows=1
+Marker8.0scene_recognition_sceneA_sub0_ref=1
+Marker8.0scene_recognition_sceneB_lines=1
+Marker8.0scene_recognition_sceneB_ref=1
+Marker8.0scene_recognition_sceneB_sub0_lines=1
+Marker8.0scene_recognition_sceneB_sub0_parent_arrows=1
+Marker8.0scene_recognition_sceneB_sub0_ref=1
+Marker8.Enabled=1
+Marker8.Marker\ Topic=/active_scene_recognition_ism/ism_marker
+Marker8.Queue\ Size=100
+Marker9.Enabled=1
+Marker9.Marker\ Topic=visualization_marker
+Marker9.Queue\ Size=100
+Marker9.arrows_Cup_0.549020.1237990.1237991=1
+Marker9.arrows_KetchupBottle_0.549020.1237990.1237991=1
+Marker9.arrows_PlateDeep_0.2291350.5058820.275261=1
+Marker9.arrows_Smacks_=0
+Marker9.arrows_VitalisSchoko_=0
+Marker9.arrows_sceneA_sub0_=0
+Marker9.arrows_sceneB_sub0_=1
+Marker9.lines_Cup_0.549020.1237990.1237991=1
+Marker9.lines_KetchupBottle_0.549020.1237990.1237991=1
+Marker9.lines_PlateDeep_0.2291350.5058820.275261=1
+Marker9.lines_Smacks_=0
+Marker9.lines_VitalisSchoko_=0
+Marker9.lines_sceneA_sub0_=0
+Marker9.lines_sceneB_sub0_=1
+Marker9.points_Cup_0.549020.1237990.1237991=1
+Marker9.points_KetchupBottle_0.549020.1237990.1237991=1
+Marker9.points_PlateDeep_0.2291350.5058820.275261=1
+Marker9.points_Smacks_=0
+Marker9.points_VitalisSchoko_=0
+Marker9.points_sceneA_sub0_=0
+Marker9.points_sceneB_sub0_=1
+MarkerArray.Enabled=1
+MarkerArray.Marker\ Array\ Topic=/active_scene_recognition_ism/quadgrid_markers
+MarkerArray.Queue\ Size=100
+MarkerArray.quad=1
+Property\ Grid\ Splitter=520,76
+Property\ Grid\ State=expanded=.Global Options,.Global Status,Image.Enabled,Marker2.Enabled,Marker.Enabled,Marker3.Enabled,Marker4.Enabled,Marker5.Enabled,MarkerArray.Enabled,Marker6.Enabled,Marker7.Enabled,Marker8.Enabled,Marker8.Namespaces,Marker9.Enabled,Marker9.Namespaces;splitterratio=0.5
+QMainWindow=000000ff00000000fd0000000300000000000000ce00000353fc0200000008fb000000100044006900730070006c006100790073010000002a00000293000000da01000005fb0000001e0054006f006f006c002000500072006f007000650072007400690065007300000001a3000000b20000006801000005fb0000001200530065006c0065006300740069006f006e00000001aa000000db0000006801000005fb0000000c00430061006d0065007200610000000299000000c90000000000000000fb0000000c0049006d00610067006500320100000288000000da0000000000000000fb0000002600560069006500770020006f00660020006c006500660074002000630061006d0065007200610000000273000000ef0000000000000000fb0000004400560069006500770020006f00660020006c006500660074002000630061006d00650072006100200028007300650067006d0065006e0074006100740069006f006e00290000000273000000ef0000000000000000fb0000000a0049006d00610067006501000002c0000000bd0000001c0100000500000001000000ed0000036efc0200000001fb0000000a00560069006500770073000000002a0000036e000000a60100000500000003000005000000006cfc0100000001fb0000000800540069006d00650100000000000005000000020b010000050000042f0000035300000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+Target\ Frame=/PTU_rviz
+Tool\ 2D\ Nav\ GoalTopic=goal
+Tool\ 2D\ Pose\ EstimateTopic=initialpose
+[Display0]
+ClassName=rviz::ImageDisplay
+Name=Image
+[Display1]
+ClassName=rviz::MarkerDisplay
+Name=Marker2
+[Display10]
+ClassName=rviz::MarkerDisplay
+Name=Marker9
+[Display2]
+ClassName=rviz::MarkerDisplay
+Name=Marker
+[Display3]
+ClassName=rviz::MarkerDisplay
+Name=Marker3
+[Display4]
+ClassName=rviz::MarkerDisplay
+Name=Marker4
+[Display5]
+ClassName=rviz::MarkerDisplay
+Name=Marker5
+[Display6]
+ClassName=rviz::MarkerArrayDisplay
+Name=MarkerArray
+[Display7]
+ClassName=rviz::MarkerDisplay
+Name=Marker6
+[Display8]
+ClassName=rviz::MarkerDisplay
+Name=Marker7
+[Display9]
+ClassName=rviz::MarkerDisplay
+Name=Marker8
+[Window]
+Height=1024
+Width=1280
+X=1264
+Y=-184

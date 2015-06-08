@@ -1,0 +1,10 @@
+<launch>
+        <!--include file="$(find ptu_tracking)/launch/tracker_left.launch"/-->
+	<!--Load config file for rosconsole so that log level for scene recognition is set to debug.-->
+	<env name="ROSCONSOLE_CONFIG_FILE" value="$(find active_scene_recognition_ism)/launch/rosconsole_asr.config"/>
+        <node name="active_scene_recognition_ism" pkg="active_scene_recognition_ism" type="active_scene_recognition_ism" output="screen">
+                <rosparam file="$(find active_scene_recognition_ism)/launch/settings.yaml"/>
+        </node>
+
+	<!--node pkg="rviz" name="rviz" type="rviz" args="/search_visualization.vcg"/-->
+</launch>
