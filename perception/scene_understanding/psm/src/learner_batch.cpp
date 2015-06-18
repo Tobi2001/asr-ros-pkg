@@ -4,7 +4,7 @@
 // Package includes
 #include <ros/ros.h>
 
-#include <pbd_msgs/pbd_computation_graph.hpp>
+#include <learner/pbd_computation_graph.hpp>
 
 // Local includes
 #include "learner/SceneLearningEngine.h"
