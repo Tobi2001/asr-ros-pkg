@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Domain name="Test1">
+<Param name="GainValueThreshold">0.2</Param>
+<Param name="RankingMethod">Addtive</Param>
+<Param name="Alpha">3</Param>
+<Param name="Beta">1</Param>
+<Param name="Gamma">1</Param>
+<Scene name="TestDb" path="record.sqlite.testdb">
+</Scene>
+</Domain>

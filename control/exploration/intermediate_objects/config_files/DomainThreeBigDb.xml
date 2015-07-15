@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Domain name="TestBigDb">
+<Param name="GainValueThreshold">0.2</Param>
+<Param name="RankingMethod">Addtive</Param>
+<Param name="Alpha">3</Param>
+<Param name="Beta">1</Param>
+<Param name="Gamma">1</Param>
+<Scene name="optedTrainer1" path="record.sqlite.optedTrainer_example_1">
+</Scene>
+<Scene name="optedTrainer2" path="record.sqlite.optedTrainer_example_2">
+</Scene>
+<Scene name="optedTrainer3" path="record.sqlite.optedTrainer_example_3">
+</Scene>
+<Scene name="optedTrainer4" path="record.sqlite.optedTrainer_example_4">
+</Scene>
+<Scene name="optedTrainer5" path="record.sqlite.optedTrainer_example_5">
+</Scene>
+<Scene name="optedTrainer6" path="record.sqlite.optedTrainer_example_6">
+</Scene>
+<Scene name="optedTrainer7" path="record.sqlite.optedTrainer_example_7">
+</Scene>
+<Scene name="optedTrainer8" path="record.sqlite.optedTrainer_example_8">
+</Scene>
+</Domain>
