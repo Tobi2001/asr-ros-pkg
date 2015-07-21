@@ -1,0 +1,588 @@
+#include "asrStateMachine.h"
+
+#include <unistd.h>
+#include <cfloat>
+#include <iostream>
+#include <sstream>
+#include <fstream>
+
+#include <boost/filesystem.hpp>
+
+#define TOPIC_OBJECTS "/stereo/objects"
+#define TOPIC_CAMERA_INFO "stereo/left/camera_info"
+#define TOPIC_STATE_CMD "state_cmd"
+
+#define SERVICE_PTU_SETTINGS "update_speed_control"
+
+#define PARAM_IDLE "is_idle"
+
+#define PTU_START_X -180
+#define PTU_START_Y -90
+#define PTU_END_X 180
+#define PTU_END_Y 90
+
+#define TS_START_X -60
+#define TS_START_Y -60
+#define TS_END_X 60
+#define TS_END_Y 60
+
+#define FILTERTHRESHOLD 0.0001
+
+//EVALUATION
+//Global variable representing time for current run of this program.
+std::stringstream absPathDir;
+
+std::ofstream costsFile;
+unsigned int searchStepCounter = 0;
+float panMovements = 0.0f;
+float tiltMovements = 0.0f;
+
+std::ofstream timesFile;
+std::ofstream recogResultsFile;
+
+//EVALUATION
+
+namespace ASR {
+
+  asrStateMachine::asrStateMachine(ros::NodeHandle& n) : priv(n) {
+    
+    ROS_DEBUG("Booting asr_state_machine.\n");
+    ROS_DEBUG("Switched to STATE_NONE.\n");
+
+    data = 0;
+    state = STATE_NONE;
+    initialSearchCompleted = false;
+
+    //Some handles to access different parameter sets (from different ros nodes) in parameter server.
+    tracker = ros::NodeHandle("ptu_tracker");
+    ptu = ros::NodeHandle("ptu_driver");
+    priv = ros::NodeHandle("~");
+
+    if(!priv.getParam("window_adjustment", window_adjustment))
+      window_adjustment = 0.75;
+
+    if(!priv.getParam("searching_timer", searching_timer))
+      searching_timer = 5;
+
+    if(!priv.getParam("endConfidence", endConfidence))
+      endConfidence = 1;
+
+    if(!priv.getParam("abortionScore", mAbortionScore))
+      mAbortionScore = 0.00001;
+
+    if(!priv.getParam("step", mStep))
+      mStep = -0.1;
+
+    //For evaluation purposes, we prevent changing to informed search.
+
+    if(!priv.getParam("enableISM", enableISM))
+      enableISM = true;
+
+    if(!priv.getParam("enableEvaluation", enableEvaluation))
+      enableEvaluation = false;
+
+    if(enableEvaluation){
+
+      priv.getParam("starting_orientation_pan", panStart);
+      priv.getParam("starting_orientation_tilt", tiltStart);
+      
+      if(!priv.getParam("dbfilename", dbfilename))
+	dbfilename = "/home/staff/meissner/devel/ros/stacks/ilcasRosPkg/branches/renoreckling/recognition/scene_recognition/recordings/pascal/record.sqlite.smacksTest";
+
+      //Where I save all my evaluation data for this system.
+      std::string basePath("/data/asr_recordings/");
+
+      //Get time of this run.
+      uint64_t timeOfRun = ros::Time::now().toNSec();
+      
+      //Path of dir for this run.
+      absPathDir << basePath << timeOfRun << "/";
+
+      //Creating directory using boost filesystem.
+      boost::filesystem::path dir(absPathDir.str());
+      if(boost::filesystem::create_directory(dir)) {
+	std::cout << "Success" << "\n";
+      }
+
+      //Create path of rosbag file.
+      std::stringstream absPathRosBag;
+      absPathRosBag << absPathDir.str() << "marker.bag";
+
+      if(!priv.getParam("markerSaverScript", markerSaverScript))
+	ROS_ERROR("Cannot evaluate without script that saves marker messages.");
+      
+      //Path of script with its argument
+      std::stringstream callScript;
+      callScript << markerSaverScript << " " << absPathRosBag.str() << "&";
+
+      //Start shell script to save marker messages
+      std::system(callScript.str().c_str());
+      sleep(2);
+
+      //Open file, I always use for this information.
+      costsFile.open((basePath + "costsFile.dat").c_str(), std::ios::out | std::ios::app);
+
+      timesFile.open((absPathDir.str() + "timesFile.dat").c_str(), std::ios::out | std::ios::app);
+      recogResultsFile.open((absPathDir.str() + "recogResultsFile.dat").c_str(), std::ios::out | std::ios::app);
+      timesFile.precision(10);
+      recogResultsFile.precision(10);
+
+      unsigned int lastSlashPos = dbfilename.find_last_of("/");
+      timesFile << (enableISM ? "ISM" : "Spiral") << " " << panStart << " " << tiltStart << " " << dbfilename.substr(lastSlashPos+1) << std::endl;
+      recogResultsFile << (enableISM ? "ISM" : "Spiral") << " " << panStart << " " << tiltStart << " " << dbfilename.substr(lastSlashPos+1) << std::endl;
+
+    }
+
+    ptu.setParam("speed_control", false);
+    settingsClient.call(empty);
+
+    tracker.getParam("camera_frame", cameraFrame);
+    tracker.getParam("ptu_base_frame", ptuFrame);
+    tracker.getParam("dpp_x", dpp_x);
+    tracker.getParam("dpp_y", dpp_y);
+
+    poseInCamFrame.header.frame_id = cameraFrame;
+    poseInCamFrame.header.stamp = ros::Time(0);
+    poseInPTUFrame.header.frame_id = ptuFrame;
+    poseInPTUFrame.header.stamp = ros::Time(0);
+
+    ptu.getParam("pan_min_angle", xMin);
+    ptu.getParam("pan_max_angle", xMax);
+    ptu.getParam("tilt_min_angle", yMin);
+    ptu.getParam("tilt_max_angle", yMax);
+
+    //Set finder with dimensions of tesselated sphere.
+    mFinder = SceneFinderPtr(new SceneFinder(Eigen::Vector2f(PTU_START_X, PTU_START_Y), Eigen::Vector2f(PTU_END_X, PTU_END_Y)));
+
+    //Publishers for all rviz visualizations.
+    mVisualization = RVizVisualizationPtr(new RVizVisualization(mFinder->getGrid()));
+
+    //Interface to PTU
+    settingsClient = ptu.serviceClient<std_srvs::Empty>(SERVICE_PTU_SETTINGS);
+    stateCmdPub = ptu.advertise<sensor_msgs::JointState>(TOPIC_STATE_CMD, 1);
+	  
+    //Interface to camera.
+    cameraInfoSub = others.subscribe<sensor_msgs::CameraInfo>(TOPIC_CAMERA_INFO, 1, &asrStateMachine::onCameraInfoMessage, this);
+
+    //Object search control by two timers.
+
+    //How long we wait for object recognition to acquire any results.
+    searchingTimer = priv.createTimer(ros::Duration(searching_timer), &asrStateMachine::searchTimeExpired, this, true);
+    searchingTimer.stop();
+
+    //Looking whether PTU has reached goal orientation.
+    movingPTUTimer = priv.createTimer(ros::Duration(WAITING_TIMER), &asrStateMachine::switch2ObjectSearch, this);
+    movingPTUTimer.start();
+
+    //XXX needed for vis
+    stateSub = ptu.subscribe("state", 1, &asrStateMachine::onStateMessage, this);
+
+    ROS_DEBUG("Booting up asr state machine finished.\n");
+
+    //Trivial, that we have not found objects yet.
+    objectFound = false;
+
+    mVisualization->initAnimatedPlot("Object Positions in PTU Space", "Pan Angle [deg]", "Tilt Angle [deg]", std::make_pair(TS_START_X, TS_END_X), std::make_pair(TS_START_Y, TS_END_Y), std::make_pair(mFinder->getGrid()->getQuadSize().x(), mFinder->getGrid()->getQuadSize().y()));
+
+  }
+
+  void asrStateMachine::onStateMessage(const sensor_msgs::JointState::ConstPtr& msg) {
+    if (cameraFoV.x() < 1 || cameraFoV.y() < 1) return;
+    mVisualization->drawFoV(msg->position[0], msg->position[1], cameraFoV.x(), cameraFoV.y()); //XXX
+  }
+
+  void asrStateMachine::init(char what) {
+    data |= what;
+    if (data == INIT_ALL && state == STATE_NONE) {
+      settingsClient.waitForExistence();
+
+      //Start searching with spiral search at orientation in degrees nearly at origin and step size equal to image area being search between camera movements. 
+      initialSearcher = InitialSearcherPtr(new InitialSearcher(cameraFoV));
+      if (!initialSearchCompleted) {
+	View nextView = initialSearcher->next();
+	nextView.valid = true;
+	ROS_INFO("First orientation, initial search moves to: (%.2f,%.2f).\n",nextView.center.x(),nextView.center.y());
+
+	sendOrientation2PTU(nextView.center);
+	currentView = nextView;
+
+      }
+
+      ROS_DEBUG("Switched to STATE_WAITING_FOR_PTU_TO_STOP.\n");
+      state = STATE_WAITING_FOR_PTU_TO_STOP;
+
+      mVisualization->drawTS(TS_START_X, TS_END_X, TS_START_Y, TS_END_Y); //XXX
+      //Deprecated: mVisualization->drawModels();
+    }
+  }
+
+  void asrStateMachine::spinAndDraw() {
+    priv.setParam(PARAM_IDLE, state == STATE_IDLE);
+    ros::spinOnce();
+
+    //Do not need to publish all these alternative scene hypotheses, before we know they are useful (any searchable views exist).
+    if(state != STATE_NEXT_SCENE_HYP){
+
+      mVisualization->drawQuads(TS_START_X, TS_END_X, TS_START_Y, TS_END_Y); //XXX
+      mVisualization->drawSamples();
+      mVisualization->drawUnfoundObjectsVotes();
+      //Check whether we already visualize any scene (this function has already been called).
+      if(scenesToShow.size() && state == STATE_IDLE){
+	//Visualize detected scenes with best ratings.
+	for(auto& sceneToShow: scenesToShow)
+	  mVisualization->drawRecognitionResult(sceneToShow, 0, mStep, ISM::PointPtr(), "0", visualization_msgs::Marker::ADD);
+      
+      }
+      else {
+	
+	if(sceneHypotheses.size())
+	  mVisualization->drawRecognitionResult(sceneHypotheses.back(), 0, mStep, ISM::PointPtr(), "0", visualization_msgs::Marker::ADD);
+
+      }
+
+    }
+
+  }
+
+  void asrStateMachine::sendOrientation2PTU(Eigen::Vector2f cmd) {
+
+    bool speedControl = true;
+    ptu.getParam("speed_control", speedControl);
+    if (speedControl) {
+      ptu.setParam("speed_control", false);
+      settingsClient.call(empty);
+    }
+
+    sensor_msgs::JointState pantiltState;
+    pantiltState.header.stamp = ros::Time::now();
+
+    pantiltState.name.push_back("pan");
+    pantiltState.name.push_back("tilt");
+
+    pantiltState.position.push_back(cmd.x());
+    pantiltState.position.push_back(cmd.y());
+
+    pantiltState.velocity.push_back(cmd.x());
+    pantiltState.velocity.push_back(cmd.y());
+
+    stateCmdPub.publish(pantiltState);
+  }
+
+  void asrStateMachine::gotoIDLE() {
+    ROS_DEBUG("Switched to STATE_IDLE.\n");
+    state = STATE_IDLE;
+
+    if(enableEvaluation) {
+      
+      unsigned int lastSlashPos = dbfilename.find_last_of("/");
+
+      costsFile << (enableISM ? "ISM" : "Spiral") << " " << panStart << " " << tiltStart << " " << searchStepCounter << " " << panMovements << " " << tiltMovements << " " << dbfilename.substr(lastSlashPos+1) << std::endl;
+
+      costsFile.close();
+
+      timesFile.close();
+      recogResultsFile.close();
+
+    }
+
+  }
+
+  //is done fairly frequently
+  void asrStateMachine::switch2ObjectSearch(const ros::TimerEvent& event) {
+    if (state == STATE_WAITING_FOR_PTU_TO_STOP || state == STATE_NEXT_SCENE_HYP) {
+      bool stopped = false;
+      ptu.getParam("reached_desired_position", stopped);
+      if (stopped) {
+
+	if(state == STATE_WAITING_FOR_PTU_TO_STOP){
+	  searchingTimer.setPeriod(ros::Duration(searching_timer));
+
+	}
+	else{
+	  searchingTimer.setPeriod(ros::Duration(0.001));
+	}
+
+	if (initialSearchCompleted) {
+	  ROS_DEBUG("Switched to STATE_SEARCHING.\n");
+	  state = STATE_SEARCHING;
+	} else {
+	  ROS_DEBUG("Switched to STATE_INITIAL_SEARCH.\n");
+	  state = STATE_INITIAL_SEARCH;
+
+	  //Just create a publisher the first time we enter this method.
+	  if(!objectsSub){
+	    
+	    //Additional sleep because we are still too fast for the ptu.
+	    sleep(2);
+	    
+	    //Initializing interface to object recognition here prevents images captured before ariving at initial pose to invoke callbacks.
+	    objectsSub = priv.subscribe(TOPIC_OBJECTS, 10, &asrStateMachine::onObjectMessage, this);
+
+	  }
+
+	}
+
+	searchingTimer.start();
+      }
+    }
+  }
+
+  void asrStateMachine::onObjectMessage(const pbd_msgs::PbdObject::ConstPtr& msg) {
+    if (state == STATE_WAITING_FOR_PTU_TO_STOP || state == STATE_IDLE || state == STATE_NEXT_SCENE_HYP) return;
+
+    //Transform pose of localized object from camera frame to ptu frame.
+    poseInCamFrame.pose = msg->poseEstimation.pose;
+    tf.transformPose(poseInPTUFrame.header.frame_id, poseInCamFrame, poseInPTUFrame);
+    
+    //Filter false positives from object recognition systems.
+    const bool validRecognitionResult = msg->rightImageCentroid[0] >= RoIMin.x() && msg->leftImageCentroid[0] <= RoIMax.x() && msg->leftImageCentroid[1] >= RoIMin.y() && msg->leftImageCentroid[1] <= RoIMax.y();
+
+    //Check whether it could be a false positive detection.
+    if (validRecognitionResult) {
+
+      //Only process this detected object if it belongs to any of the scenes we are looking for.
+      if(mFinder->isObjectInScenes(msg->type, msg->identifier)) {
+
+	//DIRTY HACK / TODO
+	if(!initialSearchCompleted){
+	  //Dirty hack for RViz: otherwise even with latching I see no meshes playing rosag...
+	  mVisualization->drawTS(TS_START_X, TS_END_X, TS_START_Y, TS_END_Y); //XXX
+	  //Deprecated: mVisualization->drawModels();
+	  //Dirty hack end.
+	}
+	//DIRTY HACK
+
+	if(!initialSearchCompleted && enableISM) {
+	  initialSearchCompleted = true;
+
+	  ROS_DEBUG("Switched to STATE_SEARCHING from STATE_INITIAL_SEARCH.\n");
+	  state = STATE_SEARCHING;
+ 	}
+
+	//Process found object (whether newly found or already known to us) and perform scene detection returning the best result.
+	std::vector<ISM::RecognitionResultPtr> newHypotheses = mFinder->findScenes(msg, poseInPTUFrame.pose, FILTERTHRESHOLD, -1);
+	scenesToShow = mFinder->findScenes(mFinder->getObjectSet(), FILTERTHRESHOLD, 1);
+	 
+	//Dirty hack since here we should check whether any scene could be found and not implicitely if we found an object of new type. TODO
+      	if(!newHypotheses.empty()) {
+	  
+	  sceneHypotheses = newHypotheses;
+		  
+	  //We need to recalculate poses of unknown objects.
+	  objectFound = true;
+	     
+	  //Visualize detected scenes with best rating.
+	  for(auto& sceneToShow: scenesToShow)
+	    mVisualization->drawRecognitionResult(sceneToShow, 0, mStep, ISM::PointPtr(), "0", visualization_msgs::Marker::ADD);
+
+	  for(auto& sceneToShow: scenesToShow){
+	     
+	    ROS_INFO_STREAM("Recognition results rated best are: " << std::endl << sceneToShow << std::endl);
+	    recogResultsFile << sceneToShow << " " << ros::Time::now().toNSec() << std::endl;
+
+	  }
+
+	  //Gnuplot buffer objects found until now.
+	  mVisualization->updateFoundValues(mFinder->getObjectSet());
+			    
+	  if(!mFinder->areThereUnfoundObjects()){
+
+	    for(auto& object : mFinder->getObjectSet()->getObjects())
+	      ROS_INFO_STREAM("Objects found: " << std::endl << object << std::endl);
+
+	    for(auto& sceneToShow: scenesToShow){
+	     
+	      ROS_INFO_STREAM("Recognition results rated best are: " << std::endl << sceneToShow << std::endl);
+	      recogResultsFile << sceneToShow << " " << ros::Time::now().toNSec() << std::endl;
+
+	    }
+
+	    ROS_INFO("We have found all objects in the world.\n");
+	    	    
+	    gotoIDLE();
+
+	    searchTimeExpired(ros::TimerEvent());
+
+	  }
+	  else {
+
+	    //This does not need to be checked if search is already over, i.e. STATE_IDLE
+	    /*if(sceneHypotheses.back()->confidence >= endConfidence){
+	      //Print some information about detected scene.
+	      ROS_INFO_STREAM("Recognition result rated best is: " << std::endl << sceneHypotheses.back() << std::endl);
+
+	      ROS_INFO("Scene detected with sufficient confidence to end search.\n");
+
+	      //No not show points of this scene hypotheses not having been searched after search succeeded.
+	      mFinder->deleteUnfoundObjectsPoseHypotheses();
+
+	      gotoIDLE();
+
+	      searchTimeExpired(ros::TimerEvent());
+
+	    }*/	    
+
+	  }
+
+	}
+
+      }
+      else
+	ROS_DEBUG_STREAM("Rejected detection result (" << msg->type << ", " << msg->identifier << ") because it is NO SCENE ELEMENT." << std::endl);
+
+    }
+    else
+      ROS_DEBUG_STREAM("Rejected detection result (" << msg->type << ", " << msg->identifier << ") because it is OUTSIDE \"WINDOW_ADJUSTMENT\" IMAGE AREA." << std::endl);    
+  }
+
+  //called in "search time" intervals
+  void asrStateMachine::searchTimeExpired(const ros::TimerEvent& event) {
+
+    //Stopping until we move to next ptu orientation.
+    searchingTimer.stop();	
+
+    if(objectFound){
+      
+      if(sceneHypotheses.empty()){
+
+	ROS_ERROR("Cannot calculate unfound object poses with no scene hypotheses.");
+	std::exit(1);
+
+      }
+      if(enableISM)
+	//Recalculate possible poses of other previously unfound objects taking into account newly detected object.
+	mFinder->updateUnfoundObjectsPoseHypotheses(sceneHypotheses.back());
+
+      //Just restart update above when we find objects in the future.
+      objectFound = false;
+
+    }
+
+    //Set detected objects as explored for all quads in grid and delete all samples and object presence counters for quads in the given view.
+    mFinder->update(currentView);
+
+    mVisualization->drawQuads(TS_START_X, TS_END_X, TS_START_Y, TS_END_Y); //XXX
+    mVisualization->drawSamples();
+    //Draw arrows from the reference of the scene detected best (if any) to potential positions of unfound objects.
+    mVisualization->drawUnfoundObjectsVotes();
+    if(sceneHypotheses.size()){
+      //Visualize scene that lead to this unfound votes.
+      mVisualization->drawRecognitionResult(sceneHypotheses.back(), 0, mStep, ISM::PointPtr(), "0", visualization_msgs::Marker::ADD);
+    }
+
+    //Abortion due to successful scene recognition.
+    if(state == STATE_IDLE)
+      return;
+
+    View nextView;
+    if (state == STATE_INITIAL_SEARCH) {
+      nextView = initialSearcher->next();
+      ROS_INFO("Next orientation, initial search moves to: (%.2f,%.2f).\n",nextView.center.x(),nextView.center.y());
+
+    } else if (state == STATE_SEARCHING){
+      nextView = mFinder->nextBestView(currentView.center, cameraFoV);
+    }
+      
+    //No views left for this scene hypotheses to find objects to improve it or next ptu orientation is outside ptu working space.
+    if(nextView.score < mAbortionScore || 
+       nextView.center.x() < xMin || nextView.center.x() > xMax || nextView.center.y() < yMin || nextView.center.y() > yMax) {
+
+      if(nextView.score < mAbortionScore)
+	ROS_INFO("Next view has too low score to be considered.");
+      else
+	ROS_INFO("Next view is outside of ptu working space, so we ignore this scene hypotheses.");
+
+      //Let's try another hypotheses
+      if(sceneHypotheses.size() > 1){
+
+	sceneHypotheses.pop_back();
+
+	ROS_INFO_STREAM("Trying next best hypotheses. " << sceneHypotheses.size() << " hypotheses left.\n");
+	//Pretend we found an object to recalculate unfound object hypotheses with different scene hypotheses.
+	objectFound = true;
+	//Reinit search process.
+	ROS_DEBUG("Switched to STATE_NEXT_SCENE_HYP.\n");
+	state = STATE_NEXT_SCENE_HYP;
+	return;
+
+      }
+      //No hypotheses left. Let's give up.
+      else{
+
+	gotoIDLE();
+
+	ROS_INFO("Looping forever at current ptu orientation as search is finished.\n");
+	return;
+
+      }
+    }
+    //View is valid as it is inside ptu working space and has a good score
+    else 
+      nextView.valid = true;
+ 
+    mVisualization->updateUnfoundValues(mFinder->getGrid()->grid, nextView, currentView);
+    mVisualization->sendPlotToGnuplot();
+
+    sendOrientation2PTU(nextView.center);
+
+    if(enableEvaluation) {
+      searchStepCounter++;
+      panMovements += std::fabs(nextView.center.x() - currentView.center.x());
+      tiltMovements += std::fabs(nextView.center.y() - currentView.center.y());
+    }
+
+    currentView = nextView;
+ 
+    ROS_DEBUG("Switched to STATE_WAITING_FOR_PTU_TO_STOP.\n");
+    state = STATE_WAITING_FOR_PTU_TO_STOP;
+  
+  }
+
+
+  void asrStateMachine::onCameraInfoMessage(const sensor_msgs::CameraInfo::ConstPtr& msg) {
+
+    ROS_DEBUG("Initialising asr state machine with CameraInfo msg.\n");
+
+    cameraInfoSub.shutdown();
+
+    Eigen::Vector2f dpp;
+    dpp << dpp_x, dpp_y;
+    Eigen::Vector2f imageDims;
+    imageDims << msg->width, msg->height;
+
+    //Calculate field of view (in degrees) of PTU based von degrees per pixel and image size. In fact this is the size within image area boundaries calculated below.
+    ROS_INFO("Image size and how much percent of it is used: (%d,%d)-(%.2f).\n", msg->width, msg->height, window_adjustment);
+    cameraFoV << imageDims.x() * dpp.x(), imageDims.y() * dpp.y();
+    cameraFoV << cameraFoV.x() * window_adjustment, cameraFoV.y() * window_adjustment;
+    ROS_INFO("This given a camFoV in deg: (%.2f,%.2f).\n", cameraFoV.x(), cameraFoV.y());
+
+    //Calculate in which image area boundary (for an arbitrary camera view) points are considered while processing.
+    RoIMin.x() = imageDims.x() * ((1-window_adjustment) / 2);
+    RoIMin.y() = imageDims.y() * ((1-window_adjustment) / 2);
+    RoIMax.x() = imageDims.x() * (1 - (1-window_adjustment) / 2);
+    RoIMax.y() = imageDims.y() * (1 - (1-window_adjustment) / 2);
+	
+    ROS_INFO("ROI extent in x: (%d,%d), in y: (%d,%d).\n", RoIMin.x(), RoIMax.x(), RoIMin.y(), RoIMax.y());
+
+    init(INIT_CAMERA);
+        
+    ROS_DEBUG("Initialization finished.\n");
+
+  }
+
+}
+
+int main(int argc, char **argv) {
+  ros::init(argc, argv, "active_scene_recognition_ism");
+  ros::NodeHandle n("~");
+  ASR::asrStateMachine* stateMachine = new ASR::asrStateMachine(n);
+
+  ros::Rate loop_rate(10);
+
+  while (ros::ok()) {
+    stateMachine->spinAndDraw();
+    loop_rate.sleep();
+  }
+
+  return 0;
+}

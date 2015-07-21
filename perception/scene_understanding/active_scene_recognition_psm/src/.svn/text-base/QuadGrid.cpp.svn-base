@@ -1,0 +1,305 @@
+#include "QuadGrid.h"
+#include <algorithm>
+#include <iostream>
+#include <fstream>
+#include <ros/ros.h>
+
+extern std::ofstream recogResultsFile;
+
+namespace ASR {
+
+  QuadGrid::QuadGrid(Eigen::Vector2f start, Eigen::Vector2f end, Eigen::Vector2f delta, std::set<std::pair<std::string, std::string> > objects, double alpha_R, double alpha_C) {
+
+    this->gridSize.x() = (end.x()-start.x())/delta.x();
+    this->gridSize.y() = (end.y()-start.y())/delta.y();
+
+    grid = std::vector<std::vector<Quad> >(gridSize.y());
+    for(uint i = 0; i < grid.size(); i++)
+      grid[i] = std::vector<Quad>(gridSize.x(), Quad(objects));
+
+    this->start = start;
+    this->end = end;
+    this->delta = delta;
+
+    this->alpha_R = alpha_R;
+    this->alpha_C = alpha_C;
+    //this->alpha_E = alpha_E;
+
+  }
+
+  void QuadGrid::insertPoint(std::string objectType, std::string objectIdentifier, Eigen::Vector3f p, Eigen::Vector3f r, unsigned int weight) {
+
+    Eigen::Vector2f sc = toSphereCoords(p);
+
+    const int gridRow = clamp(static_cast<float>(sc.y() - start.y()) / delta.y(), 0.0f, static_cast<float>(gridSize.y() - 1.0f));
+    const int gridCol = clamp(static_cast<float>(sc.x() - start.x()) / delta.x(), 0.0f, static_cast<float>(gridSize.x() - 1.0f));
+
+    //Prevent object hypotheses for detected scene to be considered by not inserting them in case the quad has already been explored previously.
+    if(!grid[gridRow][gridCol].isObjectExplored(objectType, objectIdentifier)) {
+      
+      grid[gridRow][gridCol].addObjectPresenceCounts(weight, objectType, objectIdentifier);
+      //We do not insert the same point n time here, as this data structure shall not represent the distribution of samples in space but rather all kinds of individuals that exist as object presence hypotheses.
+      grid[gridRow][gridCol].addSample(objectType, objectIdentifier, sc, p, r); //for visualization
+
+    }
+
+  }
+
+  /*float currentEntropy = 0;
+    for (std::vector<Quad> qVector : grid) {
+    for (Quad q : qVector) {
+    const int c = q.getObjectPresenceCounters();
+    if (c == 0) continue;
+    const float localEntropy = (float)c / totalPointCount;
+    currentEntropy -= localEntropy * log(localEntropy);
+    }
+    }*/
+
+  View QuadGrid::bestView2(Eigen::Vector2f referenceViewCenter, Eigen::Vector2f cameraFoV) {
+
+    //transform fov from angles to amount of visible quads
+    Eigen::Vector2i foVSizeInQuads(cameraFoV.x() / delta.x(), cameraFoV.y() / delta.y());
+    foVSizeInQuads.x() -= (foVSizeInQuads.x() % 2 == 0)? 1 : 0;
+    foVSizeInQuads.y() -= (foVSizeInQuads.y() % 2 == 0)? 1 : 0;
+
+    //get total point count
+    int numPoseHypInGrid = 0;
+    for (std::vector<Quad> qVector : grid) {
+      for (Quad q : qVector) {
+	numPoseHypInGrid += q.getObjectPresenceCounters();
+      }
+    }
+
+    ROS_DEBUG_STREAM("numPoseHypInGrid when entering bestView2: " << numPoseHypInGrid << std::endl);
+
+    View bestView;
+    bestView.fov = cameraFoV;
+
+    float maxScore = 0;
+    //float maxReward = 0, maxCost = 0, maxExploration = 0;
+    float maxReward = 0, maxCost = 0;
+
+    //Go through all views on grid.
+    for (int i = 0; i < gridSize.y() - foVSizeInQuads.y() + 1; i++) {
+      for (int j = 0; j < gridSize.x() - foVSizeInQuads.x() + 1; j++) {
+
+	//Calculate manhattan distance between current center of camera view and center of potential view.
+	//When you are at (0,0) on the grid, in degrees, you are at (start.x,start.y) and this can be negative...
+	float absPanCost = referenceViewCenter.x() - ((static_cast<float>(j) - static_cast<float>(gridSize.x()/2)) * delta.x() + 0.5f * cameraFoV.x());
+	float absTiltCost = referenceViewCenter.y() - ((static_cast<float>(i) - static_cast<float>(gridSize.y()/2)) * delta.y() + 0.5f * cameraFoV.y());
+	//Relate this value to dimensions of tesselated sphere taking size of view into account (left und right border).
+	float relPanCost = std::fabs(absPanCost / (end.x() - start.x() - cameraFoV.x()));
+	float relTiltCost = std::fabs(absTiltCost / (end.y() - start.y() - cameraFoV.y()));
+
+	//Calculate reward and exploration across quads in considered view.
+	int pointsInView = 0;
+	std::set<std::pair<std::string, std::string> > objectsInView;
+	//int numUnexploredInView = 0;
+	int numObjectsInView = 0;
+	
+	//Go through all quads in considered view.
+	for (int u = 0; u < foVSizeInQuads.y(); u++) {
+	  for (int v = 0; v < foVSizeInQuads.x(); v++) {
+
+	    //!!TODO: Later we should use function for the object types we are looking for instead of treating all objects at once.
+
+	      pointsInView += grid[i + u][j + v].getObjectPresenceCounters();
+
+	      for (std::pair<std::string, std::string> o : grid[i + u][j + v].getPresumablyPresentObjects())
+		objectsInView.insert(o);
+
+	      /*for (std::pair<std::string, std::string> o : grid[i + u][j + v].getUnexploredObjects())
+		numUnexploredInView++;*/
+
+	      numObjectsInView += grid[i + u][j + v].getPresumablyPresentObjects().size();
+
+	  }
+	}
+
+	float reward;
+	if(numPoseHypInGrid > 0)
+	  reward = static_cast<float>(pointsInView) / static_cast<float>(numPoseHypInGrid);
+	else
+	  reward = 0;
+
+	float cost = 0.5f * clamp(relPanCost, 0.0f, 1.0f) + 0.5f * clamp(relTiltCost, 0.0f, 1.0f);
+	//const float exploration = static_cast<float>(numUnexploredInView) / static_cast<float>(numObjectsInView);
+
+	//const float score = alpha_R * reward + alpha_C * (1.0f - cost) + alpha_E * exploration;
+	//Calculate values triple for considered view.
+	float score = alpha_R * reward + alpha_C * (1.0f - cost);
+
+	//currently best view
+	if (score > maxScore) {
+
+	  maxScore = score;
+	  const Eigen::Vector2i bestIndices(j + foVSizeInQuads.x() / 2, i + foVSizeInQuads.y() / 2);
+
+	  bestView.score = maxScore;
+	  bestView.center = getPos(bestIndices.y(), bestIndices.x());
+	  bestView.objects = objectsInView;
+
+	  maxReward = reward;
+	  maxCost = cost;
+	  //maxExploration = alpha_E * exploration;
+	}
+      }
+
+    }
+
+    ROS_INFO("Calculated Next-Best-View is located at (%.2f,%.2f) and has a score of: %.2f.\n", bestView.center.x(), bestView.center.y(), bestView.score);
+    //ROS_INFO("Score is made up of reward: %.2f, cost: %.2f, exploration: %.2f.\n", maxReward, maxCost, maxExploration);
+    ROS_INFO("Score is made up of reward: %.2f, cost: %.2f.\n", maxReward, maxCost);
+	
+    ROS_INFO("Following objects are expected there\n");
+    for (auto& o : bestView.objects)
+      ROS_INFO(": (%s, %s)", o.first.c_str(), (o.second.empty() ? "no id" : o.second.c_str()));
+
+    //EVALUATION
+    recogResultsFile << "Calculated Next-Best-View is located at (" << bestView.center.x() << "," << bestView.center.y() << ") and has a score of: " << bestView.score << ". " << ros::Time::now().toNSec() << std::endl;
+    recogResultsFile << "Score is made up of reward: " << maxReward << ", cost: " << maxCost << ". " << ros::Time::now().toNSec() << std::endl;
+    recogResultsFile << "Following objects are expected there " << ros::Time::now().toNSec() << std::endl;
+
+    for (auto& o : bestView.objects)
+      recogResultsFile << ": (" << o.first.c_str() << ", " << (o.second.empty() ? "no id" : o.second.c_str()) << ") " << ros::Time::now().toNSec() << std::endl;
+    //EVALUATION
+
+    return bestView;
+
+  }
+
+  void QuadGrid::markAsExplored(std::string objectType, std::string objectIdentifier) {
+
+    for (uint i = 0; i < grid.size(); i++) {
+      for (uint j = 0; j < grid[i].size(); j++) {
+
+	try {
+	  grid[i][j].markObjectAsExplored(objectType, objectIdentifier);
+	}
+	catch(std::exception& e){
+	  ROS_ERROR("Tried to mark (%s, %s) as explored in grid, but this object is unknown to quad.\n", objectType.c_str(), objectIdentifier.c_str());
+	}
+      }
+    }
+
+  }
+
+  //mark each quad indicated by the view as explored
+  void QuadGrid::markFoVAsExplored(const View& view, std::string objectType, std::string objectIdentifier) {
+
+    Eigen::Vector2i size(view.fov.x() / delta.x(), view.fov.y() / delta.y());
+    size.x() -= (size.x() % 2 == 0)? 1 : 0;
+    size.y() -= (size.y() % 2 == 0)? 1 : 0;
+
+    Eigen::Vector2i indices((view.center.x() - start.x()) / delta.x(),
+			    (view.center.y() - start.y()) / delta.y());
+
+    for (int i = indices.y() - size.y() / 2; i <= indices.y() + size.y() / 2; i++)
+      for (int j = indices.x() - size.x() / 2; j <= indices.x() + size.x() / 2; j++)
+	grid[i][j].markObjectAsExplored(objectType, objectIdentifier);
+
+  }
+
+  Eigen::Vector2f QuadGrid::getPos(uint row, uint col) {
+    Eigen::Vector2f pos;
+    pos.x() = start.x() + (col + 0.5) * delta.x();
+    pos.y() = start.y() + (row + 0.5) * delta.y();
+    return pos;
+  }
+
+  void QuadGrid::clearObjectPresenceCounters() {
+    for (uint i = 0; i < grid.size(); i++) {
+      for (uint j = 0; j < grid[i].size(); j++) {
+	grid[i][j].clearObjectPresenceCounters();
+      }
+    }
+    
+  }
+
+  void QuadGrid::clearSamples() {
+    for (uint i = 0; i < grid.size(); i++) {
+      for (uint j = 0; j < grid[i].size(); j++) {
+	grid[i][j].clearSamples();
+      }
+    }
+
+  }
+
+  void QuadGrid::clearUnfoundObjects() {
+        
+    mUnfoundObjects.clear();
+
+  }
+
+  void QuadGrid::clearObjectPresenceCounters(std::string objectType, std::string objectIdentifier) {
+    for (std::vector<Quad> qVector : grid) {
+      for (Quad q : qVector) {
+	q.clearObjectPresenceCounters(objectType, objectIdentifier);
+      }
+    }
+
+  }
+
+  void QuadGrid::clearSamples(std::string objectType, std::string objectIdentifier) {
+    for (std::vector<Quad> qVector : grid) {
+      for (Quad q : qVector) {
+	q.clearSamples(objectType, objectIdentifier);
+      }
+    }
+
+  }
+
+  void QuadGrid::clearUnfoundObjects(std::string objectType, std::string objectIdentifier) {
+
+    mUnfoundObjects.erase(std::make_pair(objectType, objectIdentifier));
+
+  }
+
+  void QuadGrid::clearObjectPresenceCountersFoV(const View& view) {
+
+    Eigen::Vector2i size(view.fov.x() / delta.x(), view.fov.y() / delta.y());
+    size.x() -= (size.x() % 2 == 0)? 1 : 0;
+    size.y() -= (size.y() % 2 == 0)? 1 : 0;
+
+    Eigen::Vector2i indices((view.center.x() - start.x()) / delta.x(),
+			    (view.center.y() - start.y()) / delta.y());
+
+    for (int i = indices.y() - size.y() / 2; i <= indices.y() + size.y() / 2; i++)
+      for (int j = indices.x() - size.x() / 2; j <= indices.x() + size.x() / 2; j++)
+	grid[i][j].clearObjectPresenceCounters();
+
+  }
+
+  void QuadGrid::clearSamplesFoV(const View& view) {
+
+    Eigen::Vector2i size(view.fov.x() / delta.x(), view.fov.y() / delta.y());
+    size.x() -= (size.x() % 2 == 0)? 1 : 0;
+    size.y() -= (size.y() % 2 == 0)? 1 : 0;
+
+    Eigen::Vector2i indices((view.center.x() - start.x()) / delta.x(),
+			    (view.center.y() - start.y()) / delta.y());
+
+    for (int i = indices.y() - size.y() / 2; i <= indices.y() + size.y() / 2; i++)
+      for (int j = indices.x() - size.x() / 2; j <= indices.x() + size.x() / 2; j++)
+	grid[i][j].clearSamples();
+
+  }
+
+  Eigen::Vector2f QuadGrid::toSphereCoords(Eigen::Vector3f p) {
+
+    double panAngle = (p.x() < 0)? 1 : -1;
+    panAngle *= acos(-p.y() / (sqrt(p.x() * p.x() + p.y() * p.y()))) * RAD_TO_DEG;
+
+    double tiltAngle = (p.z() > 0)? -1 : 1;
+    tiltAngle *= acos(-p.y() / (sqrt(p.y() * p.y() + p.z() * p.z()))) * RAD_TO_DEG;
+
+    Eigen::Vector2f sphereCoords(panAngle, tiltAngle);
+    return sphereCoords;
+
+  }
+
+  template <class T> T QuadGrid::clamp(T input, T minV, T maxV) {
+    return std::max(std::min(input, maxV), minV);
+  }
+
+}

@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/ilcasRosPkg/!svn/ver/1785/branches/matthiasmayr/catkin_port/trunk/perception/scene_understanding/active_scene_recognition_ism/src
+END
+QuadGrid.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svn/ilcasRosPkg/!svn/ver/1785/branches/matthiasmayr/catkin_port/trunk/perception/scene_understanding/active_scene_recognition_ism/src/QuadGrid.cpp
+END
+SceneFinder.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/svn/ilcasRosPkg/!svn/ver/1785/branches/matthiasmayr/catkin_port/trunk/perception/scene_understanding/active_scene_recognition_ism/src/SceneFinder.cpp
+END
+InitialSearcher.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/svn/ilcasRosPkg/!svn/ver/1785/branches/matthiasmayr/catkin_port/trunk/perception/scene_understanding/active_scene_recognition_ism/src/InitialSearcher.cpp
+END
+Quad.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/ilcasRosPkg/!svn/ver/1785/branches/matthiasmayr/catkin_port/trunk/perception/scene_understanding/active_scene_recognition_ism/src/Quad.cpp
+END
+asrStateMachine.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/svn/ilcasRosPkg/!svn/ver/1785/branches/matthiasmayr/catkin_port/trunk/perception/scene_understanding/active_scene_recognition_ism/src/asrStateMachine.cpp
+END
+RVizVisualization.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/svn/ilcasRosPkg/!svn/ver/1785/branches/matthiasmayr/catkin_port/trunk/perception/scene_understanding/active_scene_recognition_ism/src/RVizVisualization.cpp
+END

@@ -1,0 +1,19 @@
+<!-- Launches the whole system for probabilistic scene recognition. -->
+<launch>
+  <!-- Start PTU. -->
+  <include file="$(find ptu_driver)/launch/ptu_left.launch"/>
+  
+  <!-- Start kinematic chain. -->
+  <!--<include file="$(find ptu_tracking)/launch/transformation_publishers_left.launch"/>
+  <include file="$(find ptu_tracking)/launch/consolidation_transforms_left.launch"/>-->
+  <include file="$(find kinematic_chain)/launch/transformation_publishers_left.launch"/>
+
+  <!-- Start stereo object localization systems from Pedram.-->
+  <include file="$(find recognition_for_grasping)/recognition_for_grasping.launch"/>
+  
+  <!-- Start marker localization system.-->
+  <!--<include file="$(find armarker_recognition)/marker_recognition.launch"/>-->
+  
+  <!-- Start marker mapper for mapping markers to objects.-->
+  <include file="$(find psm)/launch/marker_mapper.launch"/>
+</launch>
