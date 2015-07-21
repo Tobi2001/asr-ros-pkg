@@ -118,9 +118,9 @@
 [submodule "control/exploration/initial_search_scenario"]
 	path = control/exploration/initial_search_scenario
 	url = gitolite@i61p109.ira.uka.de:initial_search_scenario
-[submodule "perception/scene_understanding/pose_prediction_ism"]
-	path = perception/scene_understanding/pose_prediction_ism
-	url = gitolite@i61p109.ira.uka.de:pose_prediction_ism
 [submodule "control/exploration/next_best_view"]
 	path = control/exploration/next_best_view
 	url = gitolite@i61p109.ira.uka.de:next_best_view
+[submodule "perception/scene_understanding/recognizer_prediction_ism"]
+	path = perception/scene_understanding/recognizer_prediction_ism
+	url = gitolite@i61p109.ira.uka.de:recognizer_prediction_ism
