@@ -106,3 +106,21 @@
 [submodule "perception/scene_understanding/ism_visualizations"]
 	path = perception/scene_understanding/ism_visualizations
 	url = gitolite@i61p109.ira.uka.de:ism_visualizations
+[submodule "utility/rviz_pose_manager"]
+	path = utility/rviz_pose_manager
+	url = gitolite@i61p109.ira.uka.de:rviz_pose_manager
+[submodule "perception/audio/human_interface"]
+	path = perception/audio/human_interface
+	url = gitolite@i61p109.ira.uka.de:human_interface
+[submodule "control/exploration/intermediate_objects"]
+	path = control/exploration/intermediate_objects
+	url = gitolite@i61p109.ira.uka.de:intermediate_objects
+[submodule "control/exploration/initial_search_scenario"]
+	path = control/exploration/initial_search_scenario
+	url = gitolite@i61p109.ira.uka.de:initial_search_scenario
+[submodule "perception/scene_understanding/pose_prediction_ism"]
+	path = perception/scene_understanding/pose_prediction_ism
+	url = gitolite@i61p109.ira.uka.de:pose_prediction_ism
+[submodule "control/exploration/next_best_view"]
+	path = control/exploration/next_best_view
+	url = gitolite@i61p109.ira.uka.de:next_best_view
