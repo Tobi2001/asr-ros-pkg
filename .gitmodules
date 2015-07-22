@@ -124,3 +124,6 @@
 [submodule "perception/scene_understanding/recognizer_prediction_ism"]
 	path = perception/scene_understanding/recognizer_prediction_ism
 	url = gitolite@i61p109.ira.uka.de:recognizer_prediction_ism
+[submodule "perception/glove/glove_visualization"]
+	path = perception/glove/glove_visualization
+	url = gitolite@i61p109.ira.uka.de:glove_visualization
