@@ -130,3 +130,6 @@
 [submodule "perception/scene_understanding/active_scene_recognition_psm"]
 	path = perception/scene_understanding/active_scene_recognition_psm
 	url = gitolite@i61p109.ira.uka.de:active_scene_recognition_psm
+[submodule "perception/scene_understanding/psm"]
+	path = perception/scene_understanding/psm
+	url = gitolite@i61p109.ira.uka.de:psm
