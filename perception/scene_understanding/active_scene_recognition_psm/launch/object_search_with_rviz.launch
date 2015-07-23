@@ -1,6 +1,0 @@
-<launch>
-        <include file="$(find object_search_ism)/launch/object_search.launch"/>
-
-	<!-- in case this doesn' work, refer to ISMFinder.cpp for a list of topics -->
-	<node pkg="rviz" name="rviz" type="rviz" args="/search_visualization.vcg"/>
-</launch>

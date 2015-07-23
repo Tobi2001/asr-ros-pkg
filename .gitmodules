@@ -127,3 +127,6 @@
 [submodule "perception/glove/glove_visualization"]
 	path = perception/glove/glove_visualization
 	url = gitolite@i61p109.ira.uka.de:glove_visualization
+[submodule "perception/scene_understanding/active_scene_recognition_psm"]
+	path = perception/scene_understanding/active_scene_recognition_psm
+	url = gitolite@i61p109.ira.uka.de:active_scene_recognition_psm
