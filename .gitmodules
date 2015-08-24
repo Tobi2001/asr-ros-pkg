@@ -139,6 +139,3 @@
 [submodule "control/exploration/world_model"]
 	path = control/exploration/world_model
 	url = gitolite@i61p109.ira.uka.de:world_model
-[submodule "control/exploration/optimized_view"]
-	path = control/exploration/optimized_view
-	url = gitolite@i61p109.ira.uka.de:optimized_view
