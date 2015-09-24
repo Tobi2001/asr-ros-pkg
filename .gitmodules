@@ -143,5 +143,5 @@
 	path = control/exploration/world_model
 	url = gitolite@i61p109.ira.uka.de:world_model
 [submodule "mild_calibration_tool"]
-	path = mild_calibration_tool
+	path = mild/mild_calibration_tool
 	url = gitolite@i61p109.ira.uka.de:mild_calibration_tool
