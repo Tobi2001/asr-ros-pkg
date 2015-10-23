@@ -136,12 +136,12 @@
 [submodule "control/exploration/world_model"]
 	path = control/exploration/world_model
 	url = gitolite@i61p109.ira.uka.de:world_model
-[submodule "mild_calibration_tool"]
-	path = mild/mild_calibration_tool
-	url = gitolite@i61p109.ira.uka.de:mild_calibration_tool
 [submodule "utility/rviz_pose_manager"]
 	path = utility/rviz_pose_manager
 	url = gitolite@i61p109.ira.uka.de:rviz_pose_manager
 [submodule "utility/kinematic_chain_optimizer"]
 	path = utility/kinematic_chain_optimizer
 	url = gitolite@i61p109.ira.uka.de:kinematic_chain_optimizer
+[submodule "utility/mild_calibration_tool"]
+	path = utility/mild_calibration_tool
+	url = gitolite@i61p109.ira.uka.de:mild_calibration_tool
