@@ -142,6 +142,6 @@
 [submodule "utility/kinematic_chain_optimizer"]
 	path = utility/kinematic_chain_optimizer
 	url = gitolite@i61p109.ira.uka.de:kinematic_chain_optimizer
-[submodule "utility/mild_calibration_tool"]
-	path = utility/mild_calibration_tool
+[submodule "mild/mild_calibration_tool"]
+	path = mild/mild_calibration_tool
 	url = gitolite@i61p109.ira.uka.de:mild_calibration_tool
