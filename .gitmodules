@@ -25,9 +25,6 @@
 [submodule "mild/Plattform_Rechner/mild_base_sick"]
 	path = mild/Plattform_Rechner/mild_base_sick
 	url = gitolite@i61p109.ira.uka.de:mild_base_sick
-[submodule "mild/TOP_Rechner/mild_goal"]
-	path = mild/TOP_Rechner/mild_goal
-	url = gitolite@i61p109.ira.uka.de:mild_goal
 [submodule "mild/TOP_Rechner/mild_fake_odom"]
 	path = mild/TOP_Rechner/mild_fake_odom
 	url = gitolite@i61p109.ira.uka.de:mild_fake_odom
