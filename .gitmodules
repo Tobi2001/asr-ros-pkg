@@ -37,9 +37,6 @@
 [submodule "perception/magneto/flock_of_birds"]
 	path = perception/magneto/flock_of_birds
 	url = gitolite@i61p109.ira.uka.de:flock_of_birds
-[submodule "perception/mechanical/kern_weighing_scale_reader"]
-	path = perception/mechanical/kern_weighing_scale_reader
-	url = gitolite@i61p109.ira.uka.de:kern_weighing_scale_reader
 [submodule "perception/scene_understanding/active_scene_recognition_ism"]
 	path = perception/scene_understanding/active_scene_recognition_ism
 	url = gitolite@i61p109.ira.uka.de:active_scene_recognition_ism
