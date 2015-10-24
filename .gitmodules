@@ -37,9 +37,6 @@
 [submodule "perception/magneto/flock_of_birds"]
 	path = perception/magneto/flock_of_birds
 	url = gitolite@i61p109.ira.uka.de:flock_of_birds
-[submodule "perception/scene_understanding/active_scene_recognition_ism"]
-	path = perception/scene_understanding/active_scene_recognition_ism
-	url = gitolite@i61p109.ira.uka.de:active_scene_recognition_ism
 [submodule "perception/scene_understanding/ism"]
 	path = perception/scene_understanding/ism
 	url = gitolite@i61p109.ira.uka.de:ism
@@ -112,9 +109,6 @@
 [submodule "perception/glove/glove_visualization"]
 	path = perception/glove/glove_visualization
 	url = gitolite@i61p109.ira.uka.de:glove_visualization
-[submodule "perception/scene_understanding/active_scene_recognition_psm"]
-	path = perception/scene_understanding/active_scene_recognition_psm
-	url = gitolite@i61p109.ira.uka.de:active_scene_recognition_psm
 [submodule "perception/scene_understanding/psm"]
 	path = perception/scene_understanding/psm
 	url = gitolite@i61p109.ira.uka.de:psm
