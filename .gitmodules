@@ -139,3 +139,9 @@
 [submodule "mild/mild_calibration_tool"]
 	path = mild/mild_calibration_tool
 	url = gitolite@i61p109.ira.uka.de:mild_calibration_tool
+[submodule "dome/kinematic_chain_pbd"]
+	path = dome/kinematic_chain_pbd
+	url = gitolite@i61p109.ira.uka.de:kinematic_chain_pbd
+[submodule "dome/visualization_server"]
+	path = dome/visualization_server
+	url = gitolite@i61p109.ira.uka.de:visualization_server
