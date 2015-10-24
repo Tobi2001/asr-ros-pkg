@@ -82,9 +82,6 @@
 [submodule "utility/ros_uri"]
 	path = utility/ros_uri
 	url = gitolite@i61p109.ira.uka.de:ros_uri
-[submodule "perception/scene_understanding/relation_graph_generator"]
-	path = perception/scene_understanding/relation_graph_generator
-	url = gitolite@i61p109.ira.uka.de:relation_graph_generator
 [submodule "perception/scene_understanding/resources_for_psm"]
 	path = perception/scene_understanding/resources_for_psm
 	url = gitolite@i61p109.ira.uka.de:resources_for_psm
