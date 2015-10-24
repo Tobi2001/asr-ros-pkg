@@ -37,15 +37,6 @@
 [submodule "perception/magneto/flock_of_birds"]
 	path = perception/magneto/flock_of_birds
 	url = gitolite@i61p109.ira.uka.de:flock_of_birds
-[submodule "perception/scene_understanding/ism"]
-	path = perception/scene_understanding/ism
-	url = gitolite@i61p109.ira.uka.de:ism
-[submodule "perception/scene_understanding/probt"]
-	path = perception/scene_understanding/probt
-	url = gitolite@i61p109.ira.uka.de:probt
-[submodule "perception/scene_understanding/scene_graph_generator"]
-	path = perception/scene_understanding/scene_graph_generator
-	url = gitolite@i61p109.ira.uka.de:scene_graph_generator
 [submodule "perception/scene_understanding/scene_understanding_rviz_plugin"]
 	path = perception/scene_understanding/scene_understanding_rviz_plugin
 	url = gitolite@i61p109.ira.uka.de:scene_understanding_rviz_plugin
@@ -82,12 +73,6 @@
 [submodule "utility/ros_uri"]
 	path = utility/ros_uri
 	url = gitolite@i61p109.ira.uka.de:ros_uri
-[submodule "perception/scene_understanding/resources_for_psm"]
-	path = perception/scene_understanding/resources_for_psm
-	url = gitolite@i61p109.ira.uka.de:resources_for_psm
-[submodule "perception/scene_understanding/ism_visualizations"]
-	path = perception/scene_understanding/ism_visualizations
-	url = gitolite@i61p109.ira.uka.de:ism_visualizations
 [submodule "perception/audio/human_interface"]
 	path = perception/audio/human_interface
 	url = gitolite@i61p109.ira.uka.de:human_interface
@@ -100,15 +85,9 @@
 [submodule "control/exploration/next_best_view"]
 	path = control/exploration/next_best_view
 	url = gitolite@i61p109.ira.uka.de:next_best_view
-[submodule "perception/scene_understanding/recognizer_prediction_ism"]
-	path = perception/scene_understanding/recognizer_prediction_ism
-	url = gitolite@i61p109.ira.uka.de:recognizer_prediction_ism
 [submodule "perception/glove/glove_visualization"]
 	path = perception/glove/glove_visualization
 	url = gitolite@i61p109.ira.uka.de:glove_visualization
-[submodule "perception/scene_understanding/psm"]
-	path = perception/scene_understanding/psm
-	url = gitolite@i61p109.ira.uka.de:psm
 [submodule "mild/kinematic_chain_mild"]
 	path = mild/kinematic_chain_mild
 	url = gitolite@i61p109.ira.uka.de:kinematic_chain_mild
@@ -130,3 +109,27 @@
 [submodule "dome/visualization_server"]
 	path = dome/visualization_server
 	url = gitolite@i61p109.ira.uka.de:visualization_server
+[submodule "perception/scene_recognition/ism"]
+	path = perception/scene_recognition/ism
+	url = gitolite@i61p109.ira.uka.de:ism
+[submodule "perception/scene_recognition/ism_visualizations"]
+	path = perception/scene_recognition/ism_visualizations
+	url = gitolite@i61p109.ira.uka.de:ism_visualizations
+[submodule "perception/scene_recognition/probt"]
+	path = perception/scene_recognition/probt
+	url = gitolite@i61p109.ira.uka.de:probt
+[submodule "perception/scene_recognition/psm"]
+	path = perception/scene_recognition/psm
+	url = gitolite@i61p109.ira.uka.de:psm
+[submodule "perception/scene_recognition/recognizer_prediction_psm"]
+	path = perception/scene_recognition/recognizer_prediction_psm
+	url = gitolite@i61p109.ira.uka.de:recognizer_prediction_psm
+[submodule "perception/scene_recognition/resources_for_psm"]
+	path = perception/scene_recognition/resources_for_psm
+	url = gitolite@i61p109.ira.uka.de:resources_for_psm
+[submodule "perception/scene_recognition/scene_graph_generator"]
+	path = perception/scene_recognition/scene_graph_generator
+	url = gitolite@i61p109.ira.uka.de:scene_graph_generator
+[submodule "perception/scene_recognition/scene_recognition_rviz_plugin"]
+	path = perception/scene_recognition/scene_recognition_rviz_plugin
+	url = gitolite@i61p109.ira.uka.de:scene_recognition_rviz_plugin
