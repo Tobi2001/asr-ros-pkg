@@ -34,9 +34,6 @@
 [submodule "mild/TOP_Rechner/mild_navigation"]
 	path = mild/TOP_Rechner/mild_navigation
 	url = gitolite@i61p109.ira.uka.de:mild_navigation
-[submodule "pbd_dome/visualization_server"]
-	path = pbd_dome/visualization_server
-	url = gitolite@i61p109.ira.uka.de:visualization_server
 [submodule "perception/glove/glove_lib"]
 	path = perception/glove/glove_lib
 	url = gitolite@i61p109.ira.uka.de:glove_lib
@@ -130,9 +127,6 @@
 [submodule "mild/kinematic_chain_mild"]
 	path = mild/kinematic_chain_mild
 	url = gitolite@i61p109.ira.uka.de:kinematic_chain_mild
-[submodule "pbd_dome/kinematic_chain_pbd"]
-	path = pbd_dome/kinematic_chain_pbd
-	url = gitolite@i61p109.ira.uka.de:kinematic_chain_pbd
 [submodule "control/exploration/world_model"]
 	path = control/exploration/world_model
 	url = gitolite@i61p109.ira.uka.de:world_model
