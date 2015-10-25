@@ -19,9 +19,6 @@
 [submodule "mild/Plattform_Rechner/mild_base_can"]
 	path = mild/Plattform_Rechner/mild_base_can
 	url = gitolite@i61p109.ira.uka.de:mild_base_can
-[submodule "mild/Plattform_Rechner/mild_base_launch_files"]
-	path = mild/Plattform_Rechner/mild_base_launch_files
-	url = gitolite@i61p109.ira.uka.de:mild_base_launch_files
 [submodule "mild/Plattform_Rechner/mild_base_sick"]
 	path = mild/Plattform_Rechner/mild_base_sick
 	url = gitolite@i61p109.ira.uka.de:mild_base_sick
@@ -133,3 +130,6 @@
 [submodule "perception/scene_recognition/scene_recognition_rviz_plugin"]
 	path = perception/scene_recognition/scene_recognition_rviz_plugin
 	url = gitolite@i61p109.ira.uka.de:scene_recognition_rviz_plugin
+[submodule "control/resources_for_control/mild_base_launch_files"]
+	path = control/resources_for_control/mild_base_launch_files
+	url = gitolite@i61p109.ira.uka.de:mild_base_launch_files
