@@ -100,9 +100,6 @@
 [submodule "mild/mild_calibration_tool"]
 	path = mild/mild_calibration_tool
 	url = gitolite@i61p109.ira.uka.de:mild_calibration_tool
-[submodule "dome/kinematic_chain_pbd"]
-	path = dome/kinematic_chain_pbd
-	url = gitolite@i61p109.ira.uka.de:kinematic_chain_pbd
 [submodule "dome/visualization_server"]
 	path = dome/visualization_server
 	url = gitolite@i61p109.ira.uka.de:visualization_server
@@ -133,3 +130,6 @@
 [submodule "control/resources_for_control/mild_base_launch_files"]
 	path = control/resources_for_control/mild_base_launch_files
 	url = gitolite@i61p109.ira.uka.de:mild_base_launch_files
+[submodule "active_scene_recognition/recognizer_prediction_ism"]
+	path = active_scene_recognition/recognizer_prediction_ism
+	url = gitolite@i61p109.ira.uka.de:recognizer_prediction_ism
