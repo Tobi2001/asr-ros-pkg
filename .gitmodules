@@ -133,3 +133,6 @@
 [submodule "active_scene_recognition/recognizer_prediction_ism"]
 	path = active_scene_recognition/recognizer_prediction_ism
 	url = gitolite@i61p109.ira.uka.de:recognizer_prediction_ism
+[submodule "dome/kinematic_chain_dome"]
+	path = dome/kinematic_chain_dome
+	url = gitolite@i61p109.ira.uka.de:kinematic_chain_dome
