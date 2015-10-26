@@ -136,3 +136,6 @@
 [submodule "active_scene_recognition/recognizer_prediction_psm"]
 	path = active_scene_recognition/recognizer_prediction_psm
 	url = gitolite@i61p109.ira.uka.de:recognizer_prediction_psm
+[submodule "active_scene_recognition/state_machines"]
+	path = active_scene_recognition/state_machines
+	url = gitolite@i61p109.ira.uka.de:state_machines
