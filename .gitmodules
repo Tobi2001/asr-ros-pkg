@@ -100,9 +100,6 @@
 [submodule "perception/scene_recognition/psm"]
 	path = perception/scene_recognition/psm
 	url = gitolite@i61p109.ira.uka.de:psm
-[submodule "perception/scene_recognition/recognizer_prediction_psm"]
-	path = perception/scene_recognition/recognizer_prediction_psm
-	url = gitolite@i61p109.ira.uka.de:recognizer_prediction_psm
 [submodule "perception/scene_recognition/resources_for_psm"]
 	path = perception/scene_recognition/resources_for_psm
 	url = gitolite@i61p109.ira.uka.de:resources_for_psm
@@ -136,3 +133,6 @@
 [submodule "active_scene_recognition/initial_search_scenario"]
 	path = active_scene_recognition/initial_search_scenario
 	url = gitolite@i61p109.ira.uka.de:initial_search_scenario
+[submodule "active_scene_recognition/recognizer_prediction_psm"]
+	path = active_scene_recognition/recognizer_prediction_psm
+	url = gitolite@i61p109.ira.uka.de:recognizer_prediction_psm
