@@ -127,9 +127,6 @@
 [submodule "active_scene_recognition/next_best_view"]
 	path = active_scene_recognition/next_best_view
 	url = gitolite@i61p109.ira.uka.de:next_best_view
-[submodule "active_scene_recognition/intermediate_objects"]
-	path = active_scene_recognition/intermediate_objects
-	url = gitolite@i61p109.ira.uka.de:intermediate_objects
 [submodule "active_scene_recognition/initial_search_scenario"]
 	path = active_scene_recognition/initial_search_scenario
 	url = gitolite@i61p109.ira.uka.de:initial_search_scenario
