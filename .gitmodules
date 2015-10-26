@@ -7,9 +7,6 @@
 [submodule "control/ptu_controller"]
 	path = control/ptu_controller
 	url = gitolite@i61p109.ira.uka.de:ptu_controller
-[submodule "control/ptu_tracking"]
-	path = control/ptu_tracking
-	url = gitolite@i61p109.ira.uka.de:ptu_tracking
 [submodule "mild/gazebo_models"]
 	path = mild/gazebo_models
 	url = gitolite@i61p109.ira.uka.de:gazebo_models
@@ -139,3 +136,6 @@
 [submodule "active_scene_recognition/intermediate_object_generator"]
 	path = active_scene_recognition/intermediate_object_generator
 	url = gitolite@i61p109.ira.uka.de:intermediate_object_generator
+[submodule "control/tracking_of_fob"]
+	path = control/tracking_of_fob
+	url = gitolite@i61p109.ira.uka.de:tracking_of_fob
