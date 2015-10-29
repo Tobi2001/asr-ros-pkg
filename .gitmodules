@@ -118,9 +118,6 @@
 [submodule "active_scene_recognition/world_model"]
 	path = active_scene_recognition/world_model
 	url = gitolite@i61p109.ira.uka.de:world_model
-[submodule "active_scene_recognition/smach"]
-	path = active_scene_recognition/smach
-	url = gitolite@i61p109.ira.uka.de:smach
 [submodule "active_scene_recognition/next_best_view"]
 	path = active_scene_recognition/next_best_view
 	url = gitolite@i61p109.ira.uka.de:next_best_view
