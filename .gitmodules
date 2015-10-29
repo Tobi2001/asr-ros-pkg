@@ -136,3 +136,6 @@
 [submodule "control/tracking_of_fob"]
 	path = control/tracking_of_fob
 	url = gitolite@i61p109.ira.uka.de:tracking_of_fob
+[submodule "perception/scene_recognition/relation_graph_generator"]
+	path = perception/scene_recognition/relation_graph_generator
+	url = gitolite@i61p109.ira.uka.de:relation_graph_generator
