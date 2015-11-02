@@ -10,9 +10,6 @@
 [submodule "mild/gazebo_models"]
 	path = mild/gazebo_models
 	url = gitolite@i61p109.ira.uka.de:gazebo_models
-[submodule "mild/Plattform_Rechner/mild_base_can"]
-	path = mild/Plattform_Rechner/mild_base_can
-	url = gitolite@i61p109.ira.uka.de:mild_base_can
 [submodule "mild/Plattform_Rechner/mild_base_sick"]
 	path = mild/Plattform_Rechner/mild_base_sick
 	url = gitolite@i61p109.ira.uka.de:mild_base_sick
@@ -139,3 +136,6 @@
 [submodule "perception/scene_recognition/relation_graph_generator"]
 	path = perception/scene_recognition/relation_graph_generator
 	url = gitolite@i61p109.ira.uka.de:relation_graph_generator
+[submodule "mild/Plattform_Rechner/mild_base_driving"]
+	path = mild/Plattform_Rechner/mild_base_driving
+	url = gitolite@i61p109.ira.uka.de:mild_base_driving
