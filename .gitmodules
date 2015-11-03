@@ -136,3 +136,9 @@
 [submodule "mild/Plattform_Rechner/mild_base_laserscanner"]
 	path = mild/Plattform_Rechner/mild_base_laserscanner
 	url = gitolite@i61p109.ira.uka.de:mild_base_laserscanner
+[submodule "utility/calibration_tool_mild"]
+	path = utility/calibration_tool_mild
+	url = gitolite@i61p109.ira.uka.de:calibration_tool_mild
+[submodule "utility/calibration_tool_dome"]
+	path = utility/calibration_tool_dome
+	url = gitolite@i61p109.ira.uka.de:calibration_tool_dome
