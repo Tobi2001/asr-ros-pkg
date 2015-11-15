@@ -142,3 +142,6 @@
 [submodule "mild/top_computer/mild_navigation"]
 	path = mild/top_computer/mild_navigation
 	url = gitolite@i61p109.ira.uka.de:mild_navigation
+[submodule "active_scene_recognition/lib_pose_prediction_ism"]
+	path = active_scene_recognition/lib_pose_prediction_ism
+	url = gitolite@i61p109.ira.uka.de:lib_pose_prediction_ism
