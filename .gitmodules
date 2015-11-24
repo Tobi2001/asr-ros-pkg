@@ -139,3 +139,6 @@
 [submodule "active_scene_recognition/lib_pose_prediction_ism"]
 	path = active_scene_recognition/lib_pose_prediction_ism
 	url = gitolite@i61p109.ira.uka.de:lib_pose_prediction_ism
+[submodule "perception/scene_recognition/lib_ism"]
+	path = perception/scene_recognition/lib_ism
+	url = gitolite@i61p109.ira.uka.de:lib_ism
