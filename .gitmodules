@@ -157,3 +157,6 @@
 [submodule "utility/sick_lms_400"]
 	path = utility/sick_lms_400
 	url = gitolite@i61p109.ira.uka.de:sick_lms_400
+[submodule "utility/rapidxml"]
+	path = utility/rapidxml
+	url = gitolite@i61p109.ira.uka.de:rapidxml
