@@ -160,3 +160,6 @@
 [submodule "utility/rapidxml"]
 	path = utility/rapidxml
 	url = gitolite@i61p109.ira.uka.de:rapidxml
+[submodule "perception/visual/object_localization/marker_based/aruco_marker_recognition"]
+	path = perception/visual/object_localization/marker_based/aruco_marker_recognition
+	url = gitolite@i61p109.ira.uka.de:aruco_marker_recognition
