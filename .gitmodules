@@ -116,10 +116,10 @@
 	path = perception/scene_recognition/relation_graph_generator
 	url = gitolite@i61p109.ira.uka.de:relation_graph_generator
 [submodule "utility/calibration_tool_mild"]
-	path = utility/calibration_tool_mild
+	path = mild/calibration_tool_mild
 	url = gitolite@i61p109.ira.uka.de:calibration_tool_mild
 [submodule "utility/calibration_tool_dome"]
-	path = utility/calibration_tool_dome
+	path = dome/calibration_tool_dome
 	url = gitolite@i61p109.ira.uka.de:calibration_tool_dome
 [submodule "mild/base_computer/mild_base_launch_files"]
 	path = mild/base_computer/mild_base_launch_files
@@ -155,7 +155,7 @@
 	path = active_scene_recognition/resources_for_active_scene_recognition
 	url = gitolite@i61p109.ira.uka.de:resources_for_active_scene_recognition
 [submodule "utility/sick_lms_400"]
-	path = utility/sick_lms_400
+	path = perception/distance/sick_lms_400
 	url = gitolite@i61p109.ira.uka.de:sick_lms_400
 [submodule "utility/rapidxml"]
 	path = utility/rapidxml
