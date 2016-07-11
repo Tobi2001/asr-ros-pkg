@@ -163,3 +163,6 @@
 [submodule "perception/visual/object_localization/marker_based/aruco_marker_recognition"]
 	path = perception/visual/object_localization/marker_based/aruco_marker_recognition
 	url = gitolite@i61p109.ira.uka.de:aruco_marker_recognition
+[submodule "perception/visual/vision_ivt/ivt_h2t"]
+	path = perception/visual/vision_ivt/ivt_h2t
+	url = gitolite@i61p109.ira.uka.de:ivt_h2t
