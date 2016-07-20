@@ -166,3 +166,6 @@
 [submodule "perception/visual/vision_ivt/ivt_h2t"]
 	path = perception/visual/vision_ivt/ivt_h2t
 	url = gitolite@i61p109.ira.uka.de:ivt_h2t
+[submodule "perception/scene_recognition/psm_visualizations"]
+	path = perception/scene_recognition/psm_visualizations
+	url = gitolite@i61p109.ira.uka.de:psm_visualizations
