@@ -172,8 +172,8 @@
 [submodule "active_scene_recognition/grid_creator"]
 	path = active_scene_recognition/initial_search_scenario/grid_creator
 	url = gitolite@i61p109.ira.uka.de:grid_creator
-[submodule "active_scene_recognition/grid_action_server"]
-	path = active_scene_recognition/initial_search_scenario/grid_action_server
+[submodule "active_scene_recognition/initial_search_manager"]
+	path = active_scene_recognition/initial_search_scenario/initial_search_manager
 	url = gitolite@i61p109.ira.uka.de:grid_action_server
 [submodule "mild/robot_model_services"]
 	path = mild/robot_model_services
