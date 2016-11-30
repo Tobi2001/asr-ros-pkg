@@ -178,3 +178,6 @@
 [submodule "mild/robot_model_services"]
 	path = mild/robot_model_services
 	url = gitolite@i61p109.ira.uka.de:robot_model_services
+[submodule "asr_msgs"]
+	path = asr_msgs
+	url = https://github.com/asr-ros/asr_msgs.git
