@@ -1,6 +1,3 @@
-[submodule "pbd_msgs"]
-	path = pbd_msgs
-	url = gitolite@i61p109.ira.uka.de:pbd_msgs
 [submodule "control/directed_perception_ptu/ptu_driver"]
 	path = control/directed_perception_ptu/ptu_driver
 	url = gitolite@i61p109.ira.uka.de:ptu_driver
