@@ -67,9 +67,6 @@
 [submodule "perception/scene_recognition/ism_visualizations"]
 	path = perception/scene_recognition/ism_visualizations
 	url = gitolite@i61p109.ira.uka.de:ism_visualizations
-[submodule "perception/scene_recognition/probt"]
-	path = perception/scene_recognition/probt
-	url = gitolite@i61p109.ira.uka.de:probt
 [submodule "perception/scene_recognition/psm"]
 	path = perception/scene_recognition/psm
 	url = gitolite@i61p109.ira.uka.de:psm
