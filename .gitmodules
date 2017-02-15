@@ -178,3 +178,6 @@
 [submodule "dome/asr_kinematic_chain_dome"]
 	path = dome/asr_kinematic_chain_dome
 	url = https://github.com/asr-ros/asr_kinematic_chain_dome.git
+[submodule "perception/visual/vision_halcon/asr_halcon_bridge"]
+	path = perception/visual/vision_halcon/asr_halcon_bridge
+	url = https://github.com/asr-ros/asr_halcon_bridge.git
