@@ -25,9 +25,6 @@
 [submodule "perception/visual/object_localization/stereo_based/recognition_for_grasping"]
 	path = perception/visual/object_localization/stereo_based/recognition_for_grasping
 	url = gitolite@i61p109.ira.uka.de:recognition_for_grasping
-[submodule "perception/visual/vision_ivt/ivt"]
-	path = perception/visual/vision_ivt/ivt
-	url = gitolite@i61p109.ira.uka.de:ivt
 [submodule "perception/visual/vision_ivt/ivt_bridge"]
 	path = perception/visual/vision_ivt/ivt_bridge
 	url = gitolite@i61p109.ira.uka.de:ivt_bridge
