@@ -1,9 +1,6 @@
 [submodule "control/directed_perception_ptu/ptu_driver"]
 	path = control/directed_perception_ptu/ptu_driver
 	url = gitolite@i61p109.ira.uka.de:ptu_driver
-[submodule "control/ptu_controller"]
-	path = control/ptu_controller
-	url = gitolite@i61p109.ira.uka.de:ptu_controller
 [submodule "mild/gazebo_models"]
 	path = mild/gazebo_models
 	url = gitolite@i61p109.ira.uka.de:gazebo_models
@@ -178,3 +175,9 @@
 [submodule "perception/visual/vision_ivt/asr_ivt"]
 	path = perception/visual/vision_ivt/asr_ivt
 	url = https://github.com/asr-ros/asr_ivt.git
+[submodule "control/directed_perception_ptu/asr_flir_ptu_driver"]
+	path = control/directed_perception_ptu/asr_flir_ptu_driver
+	url = https://github.com/asr-ros/asr_flir_ptu_driver.git
+[submodule "control/asr_flir_ptu_controller"]
+	path = control/asr_flir_ptu_controller
+	url = https://github.com/asr-ros/asr_flir_ptu_controller.git
