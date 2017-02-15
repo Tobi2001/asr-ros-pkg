@@ -181,3 +181,6 @@
 [submodule "perception/scene_recognition/asr_lib_ism"]
 	path = perception/scene_recognition/asr_lib_ism
 	url = https://github.com/asr-ros/asr_lib_ism.git
+[submodule "utility/asr_muparser"]
+	path = utility/asr_muparser
+	url = https://github.com/asr-ros/asr_muparser.git
