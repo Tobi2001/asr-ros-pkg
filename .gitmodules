@@ -181,3 +181,6 @@
 [submodule "control/asr_flir_ptu_controller"]
 	path = control/asr_flir_ptu_controller
 	url = https://github.com/asr-ros/asr_flir_ptu_controller.git
+[submodule "perception/scene_recognition/asr_lib_ism"]
+	path = perception/scene_recognition/asr_lib_ism
+	url = https://github.com/asr-ros/asr_lib_ism.git
