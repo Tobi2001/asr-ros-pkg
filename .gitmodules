@@ -178,3 +178,6 @@
 [submodule "perception/visual/vision_halcon/asr_halcon_bridge"]
 	path = perception/visual/vision_halcon/asr_halcon_bridge
 	url = https://github.com/asr-ros/asr_halcon_bridge.git
+[submodule "utility/asr_ros_uri"]
+	path = utility/asr_ros_uri
+	url = https://github.com/asr-ros/asr_ros_uri.git
