@@ -40,9 +40,6 @@
 [submodule "utility/xsd2cpp"]
 	path = utility/xsd2cpp
 	url = gitolite@i61p109.ira.uka.de:xsd2cpp
-[submodule "utility/ros_uri"]
-	path = utility/ros_uri
-	url = gitolite@i61p109.ira.uka.de:ros_uri
 [submodule "perception/audio/human_interface"]
 	path = perception/audio/human_interface
 	url = gitolite@i61p109.ira.uka.de:human_interface
