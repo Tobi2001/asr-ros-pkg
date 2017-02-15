@@ -178,3 +178,6 @@
 [submodule "utility/asr_ros_uri"]
 	path = utility/asr_ros_uri
 	url = https://github.com/asr-ros/asr_ros_uri.git
+[submodule "perception/visual/asr_resources_for_vision"]
+	path = perception/visual/asr_resources_for_vision
+	url = https://github.com/asr-ros/asr_resources_for_vision.git
