@@ -109,9 +109,6 @@
 [submodule "active_scene_recognition/resources_for_active_scene_recognition"]
 	path = active_scene_recognition/resources_for_active_scene_recognition
 	url = gitolite@i61p109.ira.uka.de:resources_for_active_scene_recognition
-[submodule "utility/sick_lms_400"]
-	path = perception/distance/sick_lms_400
-	url = gitolite@i61p109.ira.uka.de:sick_lms_400
 [submodule "utility/rapidxml"]
 	path = utility/rapidxml
 	url = gitolite@i61p109.ira.uka.de:rapidxml
@@ -184,3 +181,6 @@
 [submodule "robot/asr_mild_kinematic_chain"]
 	path = robot/asr_mild_kinematic_chain
 	url = https://github.com/asr-ros/asr_mild_kinematic_chain.git
+[submodule "perception/distance/asr_sick_lms_400"]
+	path = perception/distance/asr_sick_lms_400
+	url = https://github.com/asr-ros/asr_sick_lms_400.git
