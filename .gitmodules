@@ -184,3 +184,15 @@
 [submodule "utility/asr_muparser"]
 	path = utility/asr_muparser
 	url = https://github.com/asr-ros/asr_muparser.git
+[submodule "robot/mild_base/asr_mild_base_driving"]
+	path = robot/mild_base/asr_mild_base_driving
+	url = https://github.com/asr-ros/asr_mild_base_driving.git
+[submodule "robot/mild_base/asr_mild_base_fake_driving"]
+	path = robot/mild_base/asr_mild_base_fake_driving
+	url = https://github.com/asr-ros/asr_mild_base_fake_driving.git
+[submodule "robot/mild_base/asr_mild_base_laserscanner"]
+	path = robot/mild_base/asr_mild_base_laserscanner
+	url = https://github.com/asr-ros/asr_mild_base_laserscanner.git
+[submodule "robot/mild_base/asr_mild_base_launch_files"]
+	path = robot/mild_base/asr_mild_base_launch_files
+	url = https://github.com/asr-ros/asr_mild_base_launch_files.git
