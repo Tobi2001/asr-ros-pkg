@@ -184,3 +184,6 @@
 [submodule "utility/asr_rviz_pose_manager"]
 	path = utility/asr_rviz_pose_manager
 	url = https://github.com/asr-ros/asr_rviz_pose_manager.git
+[submodule "utility/asr_rapidxml"]
+	path = utility/asr_rapidxml
+	url = https://github.com/asr-ros/asr_rapidxml.git
