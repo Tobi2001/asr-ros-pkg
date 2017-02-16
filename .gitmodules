@@ -184,3 +184,6 @@
 [submodule "perception/distance/asr_sick_lms_400"]
 	path = perception/distance/asr_sick_lms_400
 	url = https://github.com/asr-ros/asr_sick_lms_400.git
+[submodule "active_scene_recognition/asr_intermediate_object_generator"]
+	path = active_scene_recognition/asr_intermediate_object_generator
+	url = https://github.com/asr-ros/asr_intermediate_object_generator.git
