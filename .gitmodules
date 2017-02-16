@@ -184,3 +184,6 @@
 [submodule "active_scene_recognition/asr_intermediate_object_generator"]
 	path = active_scene_recognition/asr_intermediate_object_generator
 	url = https://github.com/asr-ros/asr_intermediate_object_generator.git
+[submodule "utility/asr_rviz_pose_manager"]
+	path = utility/asr_rviz_pose_manager
+	url = https://github.com/asr-ros/asr_rviz_pose_manager.git
