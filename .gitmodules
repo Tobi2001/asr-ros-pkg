@@ -1,6 +1,3 @@
-[submodule "control/directed_perception_ptu/ptu_driver"]
-	path = control/directed_perception_ptu/ptu_driver
-	url = gitolite@i61p109.ira.uka.de:ptu_driver
 [submodule "perception/glove/glove_lib"]
 	path = perception/glove/glove_lib
 	url = gitolite@i61p109.ira.uka.de:glove_lib
@@ -25,9 +22,6 @@
 [submodule "utility/kalman_filter"]
 	path = utility/kalman_filter
 	url = gitolite@i61p109.ira.uka.de:kalman_filter
-[submodule "utility/xsd2cpp"]
-	path = utility/xsd2cpp
-	url = gitolite@i61p109.ira.uka.de:xsd2cpp
 [submodule "perception/audio/human_interface"]
 	path = perception/audio/human_interface
 	url = gitolite@i61p109.ira.uka.de:human_interface
@@ -184,3 +178,6 @@
 [submodule "utility/asr_rapidxml"]
 	path = utility/asr_rapidxml
 	url = https://github.com/asr-ros/asr_rapidxml.git
+[submodule "utility/asr_xsd2cpp"]
+	path = utility/asr_xsd2cpp
+	url = https://github.com/asr-ros/asr_xsd2cpp.git
