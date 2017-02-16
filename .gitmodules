@@ -34,9 +34,6 @@
 [submodule "perception/glove/glove_visualization"]
 	path = perception/glove/glove_visualization
 	url = gitolite@i61p109.ira.uka.de:glove_visualization
-[submodule "utility/rviz_pose_manager"]
-	path = utility/rviz_pose_manager
-	url = gitolite@i61p109.ira.uka.de:rviz_pose_manager
 [submodule "utility/kinematic_chain_optimizer"]
 	path = utility/kinematic_chain_optimizer
 	url = gitolite@i61p109.ira.uka.de:kinematic_chain_optimizer
