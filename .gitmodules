@@ -1,9 +1,6 @@
 [submodule "control/directed_perception_ptu/ptu_driver"]
 	path = control/directed_perception_ptu/ptu_driver
 	url = gitolite@i61p109.ira.uka.de:ptu_driver
-[submodule "mild/gazebo_models"]
-	path = mild/gazebo_models
-	url = gitolite@i61p109.ira.uka.de:gazebo_models
 [submodule "perception/glove/glove_lib"]
 	path = perception/glove/glove_lib
 	url = gitolite@i61p109.ira.uka.de:glove_lib
@@ -37,9 +34,6 @@
 [submodule "perception/glove/glove_visualization"]
 	path = perception/glove/glove_visualization
 	url = gitolite@i61p109.ira.uka.de:glove_visualization
-[submodule "mild/kinematic_chain_mild"]
-	path = mild/kinematic_chain_mild
-	url = gitolite@i61p109.ira.uka.de:kinematic_chain_mild
 [submodule "utility/rviz_pose_manager"]
 	path = utility/rviz_pose_manager
 	url = gitolite@i61p109.ira.uka.de:rviz_pose_manager
@@ -100,18 +94,6 @@
 [submodule "utility/calibration_tool_dome"]
 	path = dome/calibration_tool_dome
 	url = gitolite@i61p109.ira.uka.de:calibration_tool_dome
-[submodule "mild/base_computer/mild_base_launch_files"]
-	path = mild/base_computer/mild_base_launch_files
-	url = gitolite@i61p109.ira.uka.de:mild_base_launch_files
-[submodule "mild/base_computer/mild_base_driving"]
-	path = mild/base_computer/mild_base_driving
-	url = gitolite@i61p109.ira.uka.de:mild_base_driving
-[submodule "mild/base_computer/mild_base_laserscanner"]
-	path = mild/base_computer/mild_base_laserscanner
-	url = gitolite@i61p109.ira.uka.de:mild_base_laserscanner
-[submodule "mild/top_computer/mild_fake_odom"]
-	path = mild/top_computer/mild_fake_odom
-	url = gitolite@i61p109.ira.uka.de:mild_fake_odom
 [submodule "mild/top_computer/mild_navigation"]
 	path = mild/top_computer/mild_navigation
 	url = gitolite@i61p109.ira.uka.de:mild_navigation
