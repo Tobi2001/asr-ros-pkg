@@ -79,9 +79,6 @@
 [submodule "active_scene_recognition/state_machines"]
 	path = active_scene_recognition/state_machines
 	url = gitolite@i61p109.ira.uka.de:state_machines
-[submodule "active_scene_recognition/intermediate_object_generator"]
-	path = active_scene_recognition/intermediate_object_generator
-	url = gitolite@i61p109.ira.uka.de:intermediate_object_generator
 [submodule "control/tracking_of_fob"]
 	path = control/tracking_of_fob
 	url = gitolite@i61p109.ira.uka.de:tracking_of_fob
