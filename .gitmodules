@@ -196,3 +196,9 @@
 [submodule "robot/mild_base/asr_mild_base_launch_files"]
 	path = robot/mild_base/asr_mild_base_launch_files
 	url = https://github.com/asr-ros/asr_mild_base_launch_files.git
+[submodule "robot/asr_gazebo_models"]
+	path = robot/asr_gazebo_models
+	url = https://github.com/asr-ros/asr_lib_ism.git
+[submodule "robot/asr_mild_kinematic_chain"]
+	path = robot/asr_mild_kinematic_chain
+	url = https://github.com/asr-ros/asr_mild_kinematic_chain.git
