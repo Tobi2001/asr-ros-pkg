@@ -181,3 +181,6 @@
 [submodule "perception/visual/vision_ivt/asr_ivt_bridge"]
 	path = perception/visual/vision_ivt/asr_ivt_bridge
 	url = https://github.com/asr-ros/asr_ivt_bridge.git
+[submodule "perception/visual/object_localization/asr_object_database"]
+	path = perception/visual/object_localization/asr_object_database
+	url = https://github.com/asr-ros/asr_object_database.git
