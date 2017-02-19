@@ -181,3 +181,6 @@
 [submodule "utility/asr_xsd2cpp"]
 	path = utility/asr_xsd2cpp
 	url = https://github.com/asr-ros/asr_xsd2cpp.git
+[submodule "dome/asr_calibration_tool_dome"]
+	path = dome/asr_calibration_tool_dome
+	url = https://github.com/asr-ros/asr_calibration_tool_dome.git
