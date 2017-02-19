@@ -79,9 +79,6 @@
 [submodule "utility/calibration_tool_mild"]
 	path = mild/calibration_tool_mild
 	url = gitolite@i61p109.ira.uka.de:calibration_tool_mild
-[submodule "utility/calibration_tool_dome"]
-	path = dome/calibration_tool_dome
-	url = gitolite@i61p109.ira.uka.de:calibration_tool_dome
 [submodule "mild/top_computer/mild_navigation"]
 	path = mild/top_computer/mild_navigation
 	url = gitolite@i61p109.ira.uka.de:mild_navigation
