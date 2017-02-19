@@ -181,3 +181,6 @@
 [submodule "dome/asr_visualization_server"]
 	path = dome/asr_visualization_server
 	url = https://github.com/asr-ros/asr_visualization_server.git
+[submodule "perception/visual/vision_ivt/asr_ivt_bridge"]
+	path = perception/visual/vision_ivt/asr_ivt_bridge
+	url = https://github.com/asr-ros/asr_ivt_bridge.git
