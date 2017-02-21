@@ -19,9 +19,6 @@
 [submodule "perception/scene_recognition/ism"]
 	path = perception/scene_recognition/ism
 	url = gitolite@i61p109.ira.uka.de:ism
-[submodule "perception/scene_recognition/ism_visualizations"]
-	path = perception/scene_recognition/ism_visualizations
-	url = gitolite@i61p109.ira.uka.de:ism_visualizations
 [submodule "perception/scene_recognition/psm"]
 	path = perception/scene_recognition/psm
 	url = gitolite@i61p109.ira.uka.de:psm
@@ -181,3 +178,6 @@
 [submodule "perception/scene_recognition/asr_relation_graph_generator"]
 	path = perception/scene_recognition/asr_relation_graph_generator
 	url = https://github.com/asr-ros/asr_relation_graph_generator.git
+[submodule "perception/scene_recognition/asr_ism_visualizations"]
+	path = perception/scene_recognition/asr_ism_visualizations
+	url = https://github.com/asr-ros/asr_ism_visualizations.git
