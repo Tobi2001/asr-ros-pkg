@@ -1,6 +1,3 @@
-[submodule "perception/glove/glove_lib"]
-	path = perception/glove/glove_lib
-	url = gitolite@i61p109.ira.uka.de:glove_lib
 [submodule "perception/magneto/flock_of_birds"]
 	path = perception/magneto/flock_of_birds
 	url = gitolite@i61p109.ira.uka.de:flock_of_birds
@@ -19,9 +16,6 @@
 [submodule "perception/audio/human_interface"]
 	path = perception/audio/human_interface
 	url = gitolite@i61p109.ira.uka.de:human_interface
-[submodule "perception/glove/glove_visualization"]
-	path = perception/glove/glove_visualization
-	url = gitolite@i61p109.ira.uka.de:glove_visualization
 [submodule "perception/scene_recognition/ism"]
 	path = perception/scene_recognition/ism
 	url = gitolite@i61p109.ira.uka.de:ism
@@ -181,3 +175,9 @@
 [submodule "utility/kinematic_chain_optimizer/asr_kinematic_chain_optimizer"]
 	path = utility/kinematic_chain_optimizer/asr_kinematic_chain_optimizer
 	url = https://github.com/asr-ros/asr_kinematic_chain_optimizer.git
+[submodule "perception/glove/asr_cyberglove_visualization"]
+	path = perception/glove/asr_cyberglove_visualization
+	url = https://github.com/asr-ros/asr_cyberglove_visualization.git
+[submodule "perception/glove/asr_cyberglove_lib"]
+	path = perception/glove/asr_cyberglove_lib
+	url = https://github.com/asr-ros/asr_cyberglove_lib.git
