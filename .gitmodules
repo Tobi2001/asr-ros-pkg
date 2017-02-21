@@ -55,9 +55,6 @@
 [submodule "control/tracking_of_fob"]
 	path = control/tracking_of_fob
 	url = gitolite@i61p109.ira.uka.de:tracking_of_fob
-[submodule "perception/scene_recognition/relation_graph_generator"]
-	path = perception/scene_recognition/relation_graph_generator
-	url = gitolite@i61p109.ira.uka.de:relation_graph_generator
 [submodule "utility/calibration_tool_mild"]
 	path = mild/calibration_tool_mild
 	url = gitolite@i61p109.ira.uka.de:calibration_tool_mild
@@ -181,3 +178,6 @@
 [submodule "perception/glove/asr_cyberglove_lib"]
 	path = perception/glove/asr_cyberglove_lib
 	url = https://github.com/asr-ros/asr_cyberglove_lib.git
+[submodule "perception/scene_recognition/asr_relation_graph_generator"]
+	path = perception/scene_recognition/asr_relation_graph_generator
+	url = https://github.com/asr-ros/asr_relation_graph_generator.git
