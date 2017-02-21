@@ -22,9 +22,6 @@
 [submodule "perception/glove/glove_visualization"]
 	path = perception/glove/glove_visualization
 	url = gitolite@i61p109.ira.uka.de:glove_visualization
-[submodule "utility/kinematic_chain_optimizer"]
-	path = utility/kinematic_chain_optimizer
-	url = gitolite@i61p109.ira.uka.de:kinematic_chain_optimizer
 [submodule "perception/scene_recognition/ism"]
 	path = perception/scene_recognition/ism
 	url = gitolite@i61p109.ira.uka.de:ism
@@ -133,9 +130,6 @@
 [submodule "perception/scene_recognition/asr_lib_ism"]
 	path = perception/scene_recognition/asr_lib_ism
 	url = https://github.com/asr-ros/asr_lib_ism.git
-[submodule "utility/asr_muparser"]
-	path = utility/asr_muparser
-	url = https://github.com/asr-ros/asr_muparser.git
 [submodule "robot/mild_base/asr_mild_base_driving"]
 	path = robot/mild_base/asr_mild_base_driving
 	url = https://github.com/asr-ros/asr_mild_base_driving.git
@@ -181,3 +175,9 @@
 [submodule "perception/visual/object_localization/asr_object_database"]
 	path = perception/visual/object_localization/asr_object_database
 	url = https://github.com/asr-ros/asr_object_database.git
+[submodule "utility/kinematic_chain_optimizer/asr_muparser"]
+	path = utility/kinematic_chain_optimizer/asr_muparser
+	url = https://github.com/asr-ros/asr_muparser.git
+[submodule "utility/kinematic_chain_optimizer/asr_kinematic_chain_optimizer"]
+	path = utility/kinematic_chain_optimizer/asr_kinematic_chain_optimizer
+	url = https://github.com/asr-ros/asr_kinematic_chain_optimizer.git
