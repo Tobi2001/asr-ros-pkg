@@ -55,9 +55,6 @@
 [submodule "utility/calibration_tool_mild"]
 	path = mild/calibration_tool_mild
 	url = gitolite@i61p109.ira.uka.de:calibration_tool_mild
-[submodule "mild/top_computer/mild_navigation"]
-	path = mild/top_computer/mild_navigation
-	url = gitolite@i61p109.ira.uka.de:mild_navigation
 [submodule "perception/visual/object_localization/simulation_based/fake_object_recognition"]
 	path = perception/visual/object_localization/simulation_based/fake_object_recognition
 	url = gitolite@i61p109.ira.uka.de:fake_object_recognition
@@ -181,3 +178,18 @@
 [submodule "active_scene_recognition/asr_lib_pose_prediction_ism"]
 	path = active_scene_recognition/asr_lib_pose_prediction_ism
 	url = https://github.com/asr-ros/asr_lib_pose_prediction_ism.git
+[submodule "robot/navigation/ftc_navigation/asr_move_base"]
+	path = robot/navigation/ftc_navigation/asr_move_base
+	url = https://github.com/asr-ros/asr_move_base.git
+[submodule "robot/navigation/ftc_navigation/asr_navfn"]
+	path = robot/navigation/ftc_navigation/asr_navfn
+	url = https://github.com/asr-ros/asr_move_base.git
+[submodule "robot/navigation/ftc_navigation/asr_ftc_local_planner"]
+	path = robot/navigation/ftc_navigation/asr_ftc_local_planner
+	url = https://github.com/asr-ros/asr_move_base.git
+[submodule "robot/navigation/ftc_navigation/asr_nav_core"]
+	path = robot/navigation/ftc_navigation/asr_nav_core
+	url = https://github.com/asr-ros/asr_move_base.git
+[submodule "robot/navigation/asr_mild_navigation"]
+	path = robot/navigation/asr_mild_navigation
+	url = https://github.com/asr-ros/asr_move_base.git
