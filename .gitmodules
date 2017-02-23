@@ -73,9 +73,6 @@
 [submodule "active_scene_recognition/initial_search_manager"]
 	path = active_scene_recognition/initial_search_scenario/initial_search_manager
 	url = gitolite@i61p109.ira.uka.de:grid_action_server
-[submodule "mild/robot_model_services"]
-	path = mild/robot_model_services
-	url = gitolite@i61p109.ira.uka.de:robot_model_services
 [submodule "asr_msgs"]
 	path = asr_msgs
 	url = https://github.com/asr-ros/asr_msgs.git
@@ -183,13 +180,16 @@
 	url = https://github.com/asr-ros/asr_move_base.git
 [submodule "robot/navigation/ftc_navigation/asr_navfn"]
 	path = robot/navigation/ftc_navigation/asr_navfn
-	url = https://github.com/asr-ros/asr_move_base.git
+	url = https://github.com/asr-ros/asr_navfn.git
 [submodule "robot/navigation/ftc_navigation/asr_ftc_local_planner"]
 	path = robot/navigation/ftc_navigation/asr_ftc_local_planner
-	url = https://github.com/asr-ros/asr_move_base.git
+	url = https://github.com/asr-ros/asr_ftc_local_planner.git
 [submodule "robot/navigation/ftc_navigation/asr_nav_core"]
 	path = robot/navigation/ftc_navigation/asr_nav_core
-	url = https://github.com/asr-ros/asr_move_base.git
+	url = https://github.com/asr-ros/asr_nav_core.git
 [submodule "robot/navigation/asr_mild_navigation"]
 	path = robot/navigation/asr_mild_navigation
-	url = https://github.com/asr-ros/asr_move_base.git
+	url = https://github.com/asr-ros/asr_mild_navigation.git
+[submodule "robot/asr_robot_model_services"]
+	path = robot/asr_robot_model_services
+	url = https://github.com/asr-ros/asr_robot_model_services.git
