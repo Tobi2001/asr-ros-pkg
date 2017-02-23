@@ -1,6 +1,3 @@
-[submodule "perception/magneto/flock_of_birds"]
-	path = perception/magneto/flock_of_birds
-	url = gitolite@i61p109.ira.uka.de:flock_of_birds
 [submodule "perception/scene_understanding/scene_understanding_rviz_plugin"]
 	path = perception/scene_understanding/scene_understanding_rviz_plugin
 	url = gitolite@i61p109.ira.uka.de:scene_understanding_rviz_plugin
@@ -49,9 +46,6 @@
 [submodule "active_scene_recognition/state_machines"]
 	path = active_scene_recognition/state_machines
 	url = gitolite@i61p109.ira.uka.de:state_machines
-[submodule "control/tracking_of_fob"]
-	path = control/tracking_of_fob
-	url = gitolite@i61p109.ira.uka.de:tracking_of_fob
 [submodule "utility/calibration_tool_mild"]
 	path = mild/calibration_tool_mild
 	url = gitolite@i61p109.ira.uka.de:calibration_tool_mild
@@ -181,3 +175,9 @@
 [submodule "active_scene_recognition/asr_lib_pose_prediction_ism"]
 	path = active_scene_recognition/asr_lib_pose_prediction_ism
 	url = https://github.com/asr-ros/asr_lib_pose_prediction_ism.git
+[submodule "perception/magneto/asr_flock_of_birds"]
+	path = perception/magneto/asr_flock_of_birds
+	url = https://github.com/asr-ros/asr_flock_of_birds.git
+[submodule "control/asr_flock_of_birds_tracking"]
+	path = control/asr_flock_of_birds_tracking
+	url = https://github.com/asr-ros/asr_flock_of_birds_tracking.git
