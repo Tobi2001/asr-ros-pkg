@@ -43,9 +43,6 @@
 [submodule "active_scene_recognition/recognizer_prediction_psm"]
 	path = active_scene_recognition/recognizer_prediction_psm
 	url = gitolite@i61p109.ira.uka.de:recognizer_prediction_psm
-[submodule "active_scene_recognition/state_machines"]
-	path = active_scene_recognition/state_machines
-	url = gitolite@i61p109.ira.uka.de:state_machines
 [submodule "utility/calibration_tool_mild"]
 	path = mild/calibration_tool_mild
 	url = gitolite@i61p109.ira.uka.de:calibration_tool_mild
@@ -67,9 +64,6 @@
 [submodule "perception/scene_recognition/psm_visualizations"]
 	path = perception/scene_recognition/psm_visualizations
 	url = gitolite@i61p109.ira.uka.de:psm_visualizations
-[submodule "active_scene_recognition/initial_search_manager"]
-	path = active_scene_recognition/initial_search_scenario/initial_search_manager
-	url = gitolite@i61p109.ira.uka.de:grid_action_server
 [submodule "asr_msgs"]
 	path = asr_msgs
 	url = https://github.com/asr-ros/asr_msgs.git
@@ -193,3 +187,9 @@
 [submodule "active_scene_recognition/asr_grid_creator"]
 	path = active_scene_recognition/asr_grid_creator
 	url = https://github.com/asr-ros/asr_grid_creator.git
+[submodule "active_scene_recognition/asr_state_machine"]
+	path = active_scene_recognition/asr_state_machine
+	url = https://github.com/asr-ros/asr_state_machine.git
+[submodule "active_scene_recognition/asr_direct_search_manager"]
+	path = active_scene_recognition/asr_direct_search_manager
+	url = https://github.com/asr-ros/asr_direct_search_manager.git
