@@ -67,9 +67,6 @@
 [submodule "perception/scene_recognition/psm_visualizations"]
 	path = perception/scene_recognition/psm_visualizations
 	url = gitolite@i61p109.ira.uka.de:psm_visualizations
-[submodule "active_scene_recognition/grid_creator"]
-	path = active_scene_recognition/initial_search_scenario/grid_creator
-	url = gitolite@i61p109.ira.uka.de:grid_creator
 [submodule "active_scene_recognition/initial_search_manager"]
 	path = active_scene_recognition/initial_search_scenario/initial_search_manager
 	url = gitolite@i61p109.ira.uka.de:grid_action_server
@@ -193,3 +190,6 @@
 [submodule "robot/asr_robot_model_services"]
 	path = robot/asr_robot_model_services
 	url = https://github.com/asr-ros/asr_robot_model_services.git
+[submodule "active_scene_recognition/asr_grid_creator"]
+	path = active_scene_recognition/asr_grid_creator
+	url = https://github.com/asr-ros/asr_grid_creator.git
