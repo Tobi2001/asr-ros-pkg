@@ -31,9 +31,6 @@
 [submodule "active_scene_recognition/recognizer_prediction_ism"]
 	path = active_scene_recognition/recognizer_prediction_ism
 	url = gitolite@i61p109.ira.uka.de:recognizer_prediction_ism
-[submodule "active_scene_recognition/next_best_view"]
-	path = active_scene_recognition/next_best_view
-	url = gitolite@i61p109.ira.uka.de:next_best_view
 [submodule "active_scene_recognition/initial_search_scenario"]
 	path = active_scene_recognition/initial_search_scenario
 	url = gitolite@i61p109.ira.uka.de:initial_search_scenario
@@ -193,3 +190,6 @@
 [submodule "active_scene_recognition/asr_resources_for_active_scene_recognition"]
 	path = active_scene_recognition/asr_resources_for_active_scene_recognition
 	url = https://github.com/asr-ros/asr_resources_for_active_scene_recognition.git
+[submodule "active_scene_recognition/asr_next_best_view"]
+	path = active_scene_recognition/asr_next_best_view
+	url = https://github.com/asr-ros/asr_next_best_view.git
