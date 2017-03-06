@@ -25,9 +25,6 @@
 [submodule "perception/scene_recognition/scene_recognition_rviz_plugin"]
 	path = perception/scene_recognition/scene_recognition_rviz_plugin
 	url = gitolite@i61p109.ira.uka.de:scene_recognition_rviz_plugin
-[submodule "active_scene_recognition/recognizer_prediction_ism"]
-	path = active_scene_recognition/recognizer_prediction_ism
-	url = gitolite@i61p109.ira.uka.de:recognizer_prediction_ism
 [submodule "active_scene_recognition/initial_search_scenario"]
 	path = active_scene_recognition/initial_search_scenario
 	url = gitolite@i61p109.ira.uka.de:initial_search_scenario
