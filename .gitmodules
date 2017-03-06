@@ -193,3 +193,6 @@
 [submodule "active_scene_recognition/asr_next_best_view"]
 	path = active_scene_recognition/asr_next_best_view
 	url = https://github.com/asr-ros/asr_next_best_view.git
+[submodule "perception/scene_recognition/asr_ism"]
+	path = perception/scene_recognition/asr_ism
+	url = https://github.com/asr-ros/asr_ism.git
