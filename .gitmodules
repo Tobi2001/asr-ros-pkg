@@ -193,3 +193,6 @@
 [submodule "perception/scene_recognition/asr_ism"]
 	path = perception/scene_recognition/asr_ism
 	url = https://github.com/asr-ros/asr_ism.git
+[submodule "active_scene_recognition/asr_recognizer_prediction_ism"]
+	path = active_scene_recognition/asr_recognizer_prediction_ism
+	url = https://github.com/asr-ros/asr_recognizer_prediction_ism.git
