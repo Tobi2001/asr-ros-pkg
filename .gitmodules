@@ -13,9 +13,6 @@
 [submodule "perception/audio/human_interface"]
 	path = perception/audio/human_interface
 	url = gitolite@i61p109.ira.uka.de:human_interface
-[submodule "perception/scene_recognition/ism"]
-	path = perception/scene_recognition/ism
-	url = gitolite@i61p109.ira.uka.de:ism
 [submodule "perception/scene_recognition/psm"]
 	path = perception/scene_recognition/psm
 	url = gitolite@i61p109.ira.uka.de:psm
