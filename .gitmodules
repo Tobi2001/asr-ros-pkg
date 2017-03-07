@@ -193,3 +193,6 @@
 [submodule "perception/scene_recognition/asr_psm"]
 	path = perception/scene_recognition/asr_psm
 	url = https://github.com/asr-ros/asr_psm.git
+[submodule "active_scene_recognition/asr_recognizer_prediction_psm"]
+	path = active_scene_recognition/asr_recognizer_prediction_psm
+	url = https://github.com/asr-ros/asr_recognizer_prediction_psm.git
