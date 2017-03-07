@@ -28,9 +28,6 @@
 [submodule "perception/visual/object_localization/simulation_based/fake_object_recognition"]
 	path = perception/visual/object_localization/simulation_based/fake_object_recognition
 	url = gitolite@i61p109.ira.uka.de:fake_object_recognition
-[submodule "perception/visual/object_localization/rgbd_based/descriptor_surface_based_recognition"]
-	path = perception/visual/object_localization/rgbd_based/descriptor_surface_based_recognition
-	url = gitolite@i61p109.ira.uka.de:descriptor_surface_based_recognition
 [submodule "perception/visual/object_localization/marker_based/aruco_marker_recognition"]
 	path = perception/visual/object_localization/marker_based/aruco_marker_recognition
 	url = gitolite@i61p109.ira.uka.de:aruco_marker_recognition
