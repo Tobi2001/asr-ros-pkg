@@ -193,3 +193,6 @@
 [submodule "active_scene_recognition/asr_recognizer_prediction_psm"]
 	path = active_scene_recognition/asr_recognizer_prediction_psm
 	url = https://github.com/asr-ros/asr_recognizer_prediction_psm.git
+[submodule "utility/asr_approx_mvbb"]
+	path = utility/asr_approx_mvbb
+	url = https://github.com/asr-ros/asr_approx_mvbb.git
