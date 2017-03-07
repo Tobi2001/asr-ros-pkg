@@ -22,9 +22,6 @@
 [submodule "active_scene_recognition/initial_search_scenario"]
 	path = active_scene_recognition/initial_search_scenario
 	url = gitolite@i61p109.ira.uka.de:initial_search_scenario
-[submodule "active_scene_recognition/recognizer_prediction_psm"]
-	path = active_scene_recognition/recognizer_prediction_psm
-	url = gitolite@i61p109.ira.uka.de:recognizer_prediction_psm
 [submodule "utility/calibration_tool_mild"]
 	path = mild/calibration_tool_mild
 	url = gitolite@i61p109.ira.uka.de:calibration_tool_mild
