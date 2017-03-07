@@ -193,3 +193,6 @@
 [submodule "perception/visual/object_localization/marker_based/asr_aruco_marker_recognition"]
 	path = perception/visual/object_localization/marker_based/asr_aruco_marker_recognition
 	url = https://github.com/asr-ros/asr_aruco_marker_recognition.git
+[submodule "perception/visual/object_localization/simulation_based/asr_fake_object_recognition"]
+	path = perception/visual/object_localization/simulation_based/asr_fake_object_recognition
+	url = https://github.com/asr-ros/asr_fake_object_recognition.git
