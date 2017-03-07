@@ -40,9 +40,6 @@
 [submodule "asr_msgs"]
 	path = asr_msgs
 	url = https://github.com/asr-ros/asr_msgs.git
-[submodule "utility/approx_mvbb"]
-	path = utility/approx_mvbb
-	url = gitolite@i61p109.ira.uka.de:approx_mvbb
 [submodule "dome/asr_kinematic_chain_dome"]
 	path = dome/asr_kinematic_chain_dome
 	url = https://github.com/asr-ros/asr_kinematic_chain_dome.git
