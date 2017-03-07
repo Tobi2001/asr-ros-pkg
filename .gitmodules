@@ -16,9 +16,6 @@
 [submodule "perception/scene_recognition/psm"]
 	path = perception/scene_recognition/psm
 	url = gitolite@i61p109.ira.uka.de:psm
-[submodule "perception/scene_recognition/resources_for_psm"]
-	path = perception/scene_recognition/resources_for_psm
-	url = gitolite@i61p109.ira.uka.de:resources_for_psm
 [submodule "perception/scene_recognition/scene_graph_generator"]
 	path = perception/scene_recognition/scene_graph_generator
 	url = gitolite@i61p109.ira.uka.de:scene_graph_generator
