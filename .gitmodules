@@ -23,7 +23,7 @@
 	path = active_scene_recognition/initial_search_scenario
 	url = gitolite@i61p109.ira.uka.de:initial_search_scenario
 [submodule "utility/asr_mild_calibration_tool"]
-	path = mild/asr_mild_calibration_tool
+	path = utility/asr_mild_calibration_tool
 	url = https://github.com/asr-ros/asr_mild_calibration_tool.git
 [submodule "perception/visual/vision_ivt/ivt_h2t"]
 	path = perception/visual/vision_ivt/ivt_h2t
