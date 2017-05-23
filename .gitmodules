@@ -13,9 +13,6 @@
 [submodule "perception/audio/human_interface"]
 	path = perception/audio/human_interface
 	url = gitolite@i61p109.ira.uka.de:human_interface
-[submodule "perception/scene_recognition/scene_graph_generator"]
-	path = perception/scene_recognition/scene_graph_generator
-	url = gitolite@i61p109.ira.uka.de:scene_graph_generator
 [submodule "perception/scene_recognition/scene_recognition_rviz_plugin"]
 	path = perception/scene_recognition/scene_recognition_rviz_plugin
 	url = gitolite@i61p109.ira.uka.de:scene_recognition_rviz_plugin
