@@ -89,7 +89,7 @@
 	path = dome/asr_calibration_tool_dome
 	url = https://github.com/asr-ros/asr_calibration_tool_dome.git
 [submodule "dome/asr_visualization_server"]
-	path = dome/asr_visualization_server
+	path = utility/asr_visualization_server
 	url = https://github.com/asr-ros/asr_visualization_server.git
 [submodule "perception/visual/vision_ivt/asr_ivt_bridge"]
 	path = perception/visual/vision_ivt/asr_ivt_bridge
