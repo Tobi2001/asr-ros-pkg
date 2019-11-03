@@ -1,30 +1,6 @@
-[submodule "perception/scene_understanding/scene_understanding_rviz_plugin"]
-	path = perception/scene_understanding/scene_understanding_rviz_plugin
-	url = gitolite@i61p109.ira.uka.de:scene_understanding_rviz_plugin
-[submodule "perception/visual/object_localization/marker_based/armarker_recognition"]
-	path = perception/visual/object_localization/marker_based/armarker_recognition
-	url = gitolite@i61p109.ira.uka.de:armarker_recognition
-[submodule "perception/visual/object_localization/stereo_based/recognition_for_grasping"]
-	path = perception/visual/object_localization/stereo_based/recognition_for_grasping
-	url = gitolite@i61p109.ira.uka.de:recognition_for_grasping
-[submodule "utility/kalman_filter"]
-	path = utility/kalman_filter
-	url = gitolite@i61p109.ira.uka.de:kalman_filter
-[submodule "perception/audio/human_interface"]
-	path = perception/audio/human_interface
-	url = gitolite@i61p109.ira.uka.de:human_interface
-[submodule "perception/scene_recognition/scene_recognition_rviz_plugin"]
-	path = perception/scene_recognition/scene_recognition_rviz_plugin
-	url = gitolite@i61p109.ira.uka.de:scene_recognition_rviz_plugin
-[submodule "active_scene_recognition/initial_search_scenario"]
-	path = active_scene_recognition/initial_search_scenario
-	url = gitolite@i61p109.ira.uka.de:initial_search_scenario
 [submodule "utility/asr_mild_calibration_tool"]
 	path = utility/asr_mild_calibration_tool
 	url = https://github.com/asr-ros/asr_mild_calibration_tool.git
-[submodule "perception/visual/vision_ivt/ivt_h2t"]
-	path = perception/visual/vision_ivt/ivt_h2t
-	url = gitolite@i61p109.ira.uka.de:ivt_h2t
 [submodule "asr_msgs"]
 	path = asr_msgs
 	url = https://github.com/asr-ros/asr_msgs.git
